@@ -124,8 +124,47 @@ main {
   margin-right: 0.5rem;
 }
 
+.news-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  image-rendering: pixelated;
+}
+
+.news-img[src$=".jpg"] {
+  image-rendering: auto;
+}
+
 .release-list li {
   border-left-color: var(--neon-pink);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.release-img {
+  flex: 0 0 132px;
+  width: 132px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.release-info {
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .release-list li {
+    flex-direction: column;
+  }
+  .release-img {
+    flex-basis: auto;
+    width: 100%;
+  }
 }
 
 .date {
