@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  --bg: #0a0a12;
+  --fg: #e8e8f0;
+  --neon-pink: #ff2e88;
+  --neon-cyan: #2effe0;
+  --neon-yellow: #f4e04d;
+  --card-bg: #14141f;
+  --border: #2a2a3d;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+}
+
+.glitch {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  color: var(--neon-cyan);
+  text-shadow:
+    2px 0 var(--neon-pink),
+    -2px 0 var(--neon-yellow);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.tagline {
+  color: var(--neon-yellow);
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+}
+
+.card h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  color: var(--neon-pink);
+  margin-top: 0;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  border-left: 3px solid var(--neon-cyan);
+  padding-left: 1rem;
+}
+
+.status {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--neon-yellow);
+  margin-bottom: 0.25rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #6a6a80;
+  font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: light) {
+  html, body {
+    background: #f4f4f8;
+    color: #14141f;
+  }
+  .card {
+    background: #ffffff;
+    border-color: #d8d8e4;
+  }
+  footer {
+    color: #8888a0;
+  }
+}
