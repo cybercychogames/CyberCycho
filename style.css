@@ -124,6 +124,14 @@ main {
   margin-right: 0.5rem;
 }
 
+.est {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--neon-yellow);
+  letter-spacing: 1px;
+  margin: 1rem 0 0;
+}
+
 .news-img {
   display: block;
   width: 100%;
