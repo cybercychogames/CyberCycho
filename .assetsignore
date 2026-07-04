@@ -1,5 +1,6 @@
 .git
 .gitignore
+.wrangler
 logs
 scripts
 wrangler.jsonc
