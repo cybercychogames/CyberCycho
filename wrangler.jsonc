@@ -3,6 +3,11 @@
 	// Workers 面板走 git 集成、或本地 `npx wrangler deploy` 都会读这份配置。
 	"name": "cybercychogames",
 	"compatibility_date": "2026-07-01",
+	// 自定义域绑定：部署时自动创建 DNS 记录和证书
+	"routes": [
+		{ "pattern": "cybercycho.com", "custom_domain": true },
+		{ "pattern": "www.cybercycho.com", "custom_domain": true }
+	],
 	"assets": {
 		"directory": "./",
 		"html_handling": "auto-trailing-slash",
