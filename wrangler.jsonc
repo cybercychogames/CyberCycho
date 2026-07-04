@@ -1,0 +1,11 @@
+{
+	// Cloudflare Workers 静态站配置：把仓库根目录作为静态资源目录托管。
+	// Workers 面板走 git 集成、或本地 `npx wrangler deploy` 都会读这份配置。
+	"name": "cybercycho",
+	"compatibility_date": "2026-07-01",
+	"assets": {
+		"directory": "./",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "single-page-application"
+	}
+}
