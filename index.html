@@ -26,6 +26,78 @@
       <h2>&gt; ITCH.IO NEWS</h2>
       <ul class="news-list">
         <li>
+          <img class="news-img" src="assets/img/shakedown-rally.jpg" alt="Shakedown Rally screenshot — a blue 90s rally car with Tsubasa lettering sliding along a dirt track under power lines, overlaid with the game's debug drivetrain panels showing torque curves, gear ratios and clutch values" loading="lazy">
+          <span class="tag">[ DEVLOG ]</span>
+          <strong>Two Years Away, One Enormous Update: <em>Shakedown Rally</em> Comes Back With a New Car and a Rebuilt Drivetrain</strong>
+          <p>
+            "Surpriseee! Long time no see." That is how nothke opened the first
+            <em>Shakedown Rally</em> devlog in two years on August 28, having taken a
+            break for life and other projects. The headline is Tsubasa, the game's
+            first new car — an early-90s Group A Japanese rally machine "inspired by a
+            few famous models," which he hopes will become the star and push the old
+            spec17 aside. It ships only in the paid version. The under-the-hood work is
+            bigger: a complete rewrite of the drivetrain physics, which he calls the
+            largest internal change since the game began. Engine, clutch and tire
+            behaviour used to be hacked in and eyeballed, with feedback forces plainly
+            wrong and stability so poor that wheel inertias had to be set to absurd
+            values — crash into a tree and your wheels kept spinning "like they were
+            made of uranium," sometimes reversing direction. Now torques, power, gear
+            ratios and inertias take real spec-sheet numbers and behave predictably,
+            tire grip depends on vertical compression, and there's a throttle-cutting
+            RPM limiter. The cost is that car.ini changed shape, so every existing mod
+            is broken until its author updates it, and spec17 now accelerates hard
+            enough that the leaderboards are effectively reset. Also in: a launcher
+            written in Zig that finally kills the .bat files (open source, and a
+            community member added keyboard navigation), dithering post-processing to
+            kill colour banding on the limited palette, sound reverb and occlusion so
+            the car muffles behind walls, per-element HUD toggles with 4K scaling, and
+            auto-reverse when you hold the brake at a standstill — a feature he
+            considered a skill issue until enough people asked. Particles now sort
+            around the car's windows in two buckets so the windshield stops vanishing
+            in a dust cloud. Built in nothke's own C++ engine, boots to driving in
+            under three seconds; €6.99 or more for Windows, 4.7 out of 5 from 129
+            ratings, and the demo was deliberately not updated.
+            <a href="https://nothke.itch.io/shakedown/devlog/1643017/welcome-tsubasa-and-drivetrain-developments"
+               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
+            <a href="https://nothke.itch.io/shakedown"
+               target="_blank" rel="noopener">Game page</a>
+          </p>
+        </li>
+        <li>
+          <img class="news-img" src="assets/img/lancer-tactics.jpg" alt="Lancer Tactics screenshot — a dark blue mech licence tree showing pixel-art mechs named Enkidu, Sherman and Tageles connected by magenta lines, with a tooltip explaining Sherman Variant Frames and manufacturer logos along the bottom" loading="lazy">
+          <span class="tag">[ OPEN SOURCE ]</span>
+          <strong><em>Lancer Tactics</em> Hands Out Its Full Source as a Modkit — 36 Mods In, 207 Bug Tickets Deep</strong>
+          <p>
+            Olive's Godot port of the <em>Lancer</em> tabletop RPG added official mod
+            support two months ago, and modders produced 36 mods in that window —
+            first-party supplemental frames and talents, homebrew mechs, new assets,
+            rules tweaks. Until the August 27 devlog, getting the modkit meant asking
+            for access to a locked Discord channel, a stopgap to get it out fast while
+            staying covered. With a lawyer-approved EULA and light source and asset
+            watermarking now in place, the full source of Lancer Tactics ships as a
+            104 MB modkit download sitting on the itch.io page alongside the game
+            builds, same 1.3.3 version. The other half of the post is a candid look at
+            the bill for all that openness: the Trello backlog holds 207 bug tickets
+            and 202 UI improvement tickets, the last two updates were almost entirely
+            fixes, and the studio is hiring a part-time GDScript contractor to help
+            dig out. Olive's diagnosis is that in-game editors plus modding opened an
+            enormous surface area — straight Lancer-mechanics bugs are a small slice
+            of the total, and the automated tests that cover game mechanics can't
+            easily cover a user-facing map editor. "There's a lesson to be learned
+            here about how deceptively much that is to bite off to chew." The map
+            editor is staying regardless, because it is core to the appeal. The 1.3.3
+            changelog runs long, including an experiment letting all weapons attack
+            setpiece obstructions and a critical module-upload fix for anyone whose
+            mod contained dialogue. $20 or more, Windows, macOS and Linux, 4.7 out of
+            5 from 186 ratings; it stays close enough to the tabletop rules to import
+            COMP/CON v2 characters.
+            <a href="https://wick.itch.io/lancer-tactics/devlog/1642014/modkit-bugfixing"
+               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
+            <a href="https://wick.itch.io/lancer-tactics"
+               target="_blank" rel="noopener">Game page</a>
+          </p>
+        </li>
+        <li>
           <img class="news-img" src="assets/img/pixel-composer.jpg" alt="Pixel Composer screenshot — a dark node graph editor with a chain of RM Primitive and RM Combine nodes rendering a wedge of orange cartoon cheese, with a preview panel on the left and a Padding inspector on the right" loading="lazy">
           <span class="tag">[ TOOLS ]</span>
           <strong><em>Pixel Composer</em> 1.21.9 Finally Answers the Mac Thread — and the First macOS Crash Report Arrived the Same Day</strong>
@@ -86,82 +158,19 @@
           </p>
         </li>
         <li>
-          <img class="news-img" src="assets/img/the-doll-shop.jpg" alt="The Doll Shop key art — a hand-drawn girl in a pale kimono rendered in cold blue, standing before a dark red Japanese village house, beside the game's title in red lettering" loading="lazy">
-          <span class="tag">[ DEMO ]</span>
-          <strong>Atelier Sentô Return to itch.io With a Complete Remake of <em>The Doll Shop</em></strong>
-          <p>
-            The French comic-artist duo behind <em>The Coral Cave</em> put up a demo
-            on August 25 for a ground-up rebuild of <em>The Doll Shop</em>, a game
-            that started life as a free prototype made during a masterclass with
-            students. New artwork, new soundtrack, new dialogue — plus places,
-            characters and endings that weren't in the original. You play a quiet,
-            secretive dollmaker in a snowbound village in the Japanese countryside;
-            his childhood friend comes back, and he has to choose between the dolls
-            he loves and the chance at a life outside them. It sits between adventure
-            game and visual novel: wander the village, go into homes and shops, talk
-            to locals with dialogue choices that carry consequences, repair creepy
-            dolls and return them to their owners, visit the shrine, soak in the
-            public bath, work through every ramen recipe at the restaurant. Three
-            endings, with a hidden fourth for finding all of them. Atelier Sentô
-            describe the tone as "a strange comfort in its horror and twisted charm
-            in its romance" — no jump scares, violence kept off-screen and no less
-            frightening for it. Every detail is hand-drawn, drawn from the northern
-            Japanese landscapes where the pair used to live, and the page carries
-            itch's "No generative AI was used" declaration. The itch listing already
-            holds 4.7 out of 5 from 449 ratings and an itch.io Recommends badge. The
-            demo is a 270 MB Windows download, English, French, Japanese and
-            Simplified Chinese, about half an hour long; the full game is aimed at
-            October.
-            <a href="https://ateliersento.itch.io/thedollshop/devlog/1640364/a-remake-of-the-doll-shop-demo-available-on-itchio"
-               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
-            <a href="https://ateliersento.itch.io/thedollshop"
-               target="_blank" rel="noopener">Demo page</a> ·
-            <a href="https://store.steampowered.com/app/3851680/The_Doll_Shop/"
-               target="_blank" rel="noopener">Steam</a>
-          </p>
-        </li>
-        <li>
-          <img class="news-img" src="assets/img/beltrunner.jpg" alt="BELTRUNNER title screen — white vector outlines of asteroids drifting on a black CRT-curved screen under the word BELTRUNNER, with PUSH START below and a high score of 327300" loading="lazy">
-          <span class="tag">[ PORTS ]</span>
-          <strong>A GMTK Jam Entry That Runs on the Wii and the Dreamcast: <em>BELTRUNNER</em> Adds Windows and Fits Every Build on a Floppy</strong>
-          <p>
-            Matt Sephton's GMTK Game Jam 2026 submission has spent the month since
-            the jam sprawling outward instead of onto a second project. <em>BELTRUNNER</em>
-            is an <em>Asteroids</em>-shaped arcade game about clearing asteroid belt
-            A573-R01-D5 where you cannot actually die — the timer just runs down, and
-            everything you do is about feeding the countdown across 16 waves. The
-            August 25 update fixed score saving on the platforms where it was broken,
-            added it to the ones that never had it, shipped a Windows build requiring
-            OpenGL, and squeezed the zips further. That last part is the point: the
-            Windows build is 785 kB, the PortMaster handheld build 711 kB, the
-            Dreamcast 866 kB, the Wii 982 kB, macOS 1.2 MB — every one of them fits
-            on a floppy disk, which was its own devlog five days earlier. The port
-            list came together in stages through August, Wii and Linux handhelds
-            first, then macOS and Sega Dreamcast. It is built in Jinks, Sephton's own
-            engine, which he calls "a totally new way to make games" — the multi-platform
-            reach is the argument for it. Web version free forever and rated 5.0 from
-            four ratings; $5 or more buys the downloads, with Wiimote and Joy-Con
-            among the supported inputs and colour-blind friendly rendering.
-            <a href="https://gingerbeardman.itch.io/beltrunner/devlog/1640913/what-a-save"
-               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
-            <a href="https://gingerbeardman.itch.io/beltrunner"
-               target="_blank" rel="noopener">Game page</a>
-          </p>
-        </li>
-        <li>
           <img class="news-img" src="assets/img/brackeys-jam-2026-2.jpg" alt="Brackeys Game Jam 2026.2 cover art — a gamepad and a jar of jam arranged inside a neon diamond on deep blue, under the words BRACKEYS and 2026.2" loading="lazy">
           <span class="tag">[ JAM ]</span>
-          <strong>Brackeys Game Jam 2026.2 Enters Its Final Three Days — 123 Entries In, Theme "Trust No One"</strong>
+          <strong>Brackeys Game Jam 2026.2 Has About 35 Hours Left — Entries More Than Double to 292</strong>
           <p>
             The larger of itch.io's two annual Brackeys jams opened its submission
             window on August 23 at 10:00 UTC and closes exactly a week later, on
             August 30. As always the theme dropped the moment the clock started, and
             this round it's <em>Trust No One</em> — the reveal card renders "NO" in
             hollow pink outline against solid cyan, and the jam's community board is
-            now 607 posts deep. The counter reads 17.5k joined against 123
-            entries, up 41 in a day and half again as many as the day before, but
-            still one submission for every 140 participants with three days to go —
-            the real flood always arrives in the last hours. The rules are the usual
+            now 651 posts deep. The counter reads 17.4k joined against 292
+            entries, up 169 in a day — more than double yesterday's 123 and the first
+            sign of the end-of-jam flood, though it still works out to one submission
+            for every 60 participants. The rules are the usual
             Brackeys set with teeth: host on itch with no external download links, any
             engine or framework, third-party assets allowed if you hold the licence,
             teams encouraged but recommended under four people — and a flat ban on
@@ -184,23 +193,24 @@
         <li>
           <img class="news-img" src="assets/img/games-for-scholarships.jpg" alt="Games for Scholarships bundle art — the Games for Change logo above a graduation cap perched on stacks of coins" loading="lazy">
           <span class="tag">[ BUNDLE ]</span>
-          <strong>324 Games for $10: itch.io's <em>Games for Scholarships</em> Charity Bundle Is Live Through September 20</strong>
+          <strong><em>Games for Scholarships</em> Blows Past $10,000 — the Goal Has Been Doubled to $20,000</strong>
           <p>
             Organizer jesthehuman's back-to-school bundle collects everything
             submitted to the Games for Scholarships jam — 365 entries across video
             games, browser games and tabletop RPGs, made between July 13 and August
             10 under a jam policy that barred discriminatory and AI-generated
             material. The resulting DRM-free package is 324 items from 159 creators
-            for a $10 minimum, against a regular value of roughly $674. Every dollar
+            for a $10 minimum, against a regular value of roughly $675. Every dollar
             goes to Games for Change, funding scholarships for underserved youth in
             the G4C Student Challenge, the nonprofit's global design competition for
-            students aged 10 to 25. Collection opened August 17 and runs to September
-            20; as of this morning it has raised $8,556.11 of a $10,000 goal — 85%
-            funded — from 706 contributors, who are averaging $12.11 each,
-            comfortably above the asking price, with a new $75 top contribution. That
-            is $939 and 74 more backers added in the past day, a shade faster than the
-            day before, and at this rate it clears $10,000 inside the week with more
-            than three weeks still left to run.
+            students aged 10 to 25. The $10,000 target it was chasing all week fell
+            overnight, and the organiser simply moved the post: the page now reads
+            $11,199.34 raised against a $20,000 goal, 55% funded, from 924
+            contributors averaging $12.12 each with a $75 top contribution. The past
+            day alone brought in $2,643 and 218 new backers — nearly triple the
+            previous day's pace, and by some margin the bundle's best day since it
+            opened on August 17. It runs to September 20, so there are three more
+            weeks to find the second $10,000.
             <a href="https://itch.io/b/3847/games-for-scholarships"
                target="_blank" rel="noopener">Source: itch.io bundle page</a> ·
             <a href="https://itch.io/jam/games-for-scholarships"
@@ -275,6 +285,38 @@
       <h2>&gt; INDIE GAME RELEASES — AUGUST 2026</h2>
       <ul class="news-list release-list">
         <li>
+          <img class="release-img" src="assets/img/divinum.jpg" alt="Divinum key art — a pixel-art warrior with a glowing red blade advancing through a candlelit stone hall towards a blue-armoured creature" loading="lazy">
+          <div class="release-info">
+            <span class="date">AUG 28</span>
+            <strong>Divinum — OUT NOW</strong>
+            <p>Ten years after development began, a solo developer working as Sigil Games has shipped it. <em>Divinum</em> casts you as Fjor, born under the Guardian celestial blessing, whose homeland is invaded by an outside threat; she takes up her weapon and goes looking for the ancestral legacy that might save her people. The structure is a hack-and-slash combat system laid over metroidvania exploration of an island's surface and its underground — forgotten caves, ominous swamps — hunting secrets and bosses. Two distinct primary weapons and a bank of special skills, with a fury system underneath, and the progression rejects flat numbers: bosses and hidden corners drop Runes that add unusual modifiers rather than another +5% damage, some of them carrying a downside you have to plan around. The launch post lays out a plain post-release plan — bugs, balance, player feedback, achievement localisation and more languages, then replayability content over the coming months. Early buyer reviews are recommending it on the strength of the combat animations and old-school map exploration. $14.99, cut 10% to $13.49. Windows and macOS via Steam, plus GOG, with consoles planned later. <a href="https://store.steampowered.com/app/1148130/Divinum/" target="_blank" rel="noopener">Steam</a> · <a href="https://www.gamegrin.com/news/divinum-announces-release-date-and-showcases-new-trailer" target="_blank" rel="noopener">GameGrin</a></p>
+          </div>
+        </li>
+        <li>
+          <img class="release-img" src="assets/img/allumeria.jpg" alt="Allumeria screenshot — a voxel landscape of dark blue blocky pines and terraced cliffs under a deep magenta sky scattered with sparkles" loading="lazy">
+          <div class="release-info">
+            <span class="date">AUG 28</span>
+            <strong>Allumeria — EARLY ACCESS</strong>
+            <p>Twenty months of solo development by Infinimelon put a classic voxel sandbox into Early Access at version 0.15, with the pitch that the block-building half is only the frame for an RPG progression loop — exploration, dungeon crawling and boss battles feeding a stream of new weapons, abilities, resources, enemies, structures and tools. The launch build's headline addition is NPCs and housing, built on a Comfort system that actually inspects a room: whether it's enclosed, how much light it gets, how much of that light is natural, which blocks are in it. Beds no longer skip the night outright — higher comfort makes time pass faster while you sleep — and a craftable NPC sign designates a room as somewhere a villager can move into, which they'll attempt four times a day and only if the space meets a baseline of comfort. NPCs have happiness and requirements, and won't sell you anything until you've met them. The developer's thank-you note singles out the YouTubers who kept a spotlight on the project through development and the community that "fiercely defended Allumeria's right to exist as a game," which tells you what the last year of a Minecraft-adjacent voxel game looks like from the inside. It's bundled with Lucid Blocks and heading into the PvE Survival Crafting Fest. $11.99, cut 20% to $9.59 for two weeks. Windows via Steam. <a href="https://store.steampowered.com/app/3516590/Allumeria/" target="_blank" rel="noopener">Steam</a></p>
+          </div>
+        </li>
+        <li>
+          <img class="release-img" src="assets/img/inferno-protocol.jpg" alt="Inferno Protocol key art — three survivors running through a foggy concrete maze in monochrome, with the game's title in heavy letters at the lower right" loading="lazy">
+          <div class="release-info">
+            <span class="date">AUG 28</span>
+            <strong>Inferno Protocol — EARLY ACCESS</strong>
+            <p>Tektonic Interactive's survival horror drops one to six players into a massive maze they have to scavenge, craft and navigate their way out of, with proximity chat and walkie-talkies doing the heavy lifting on the co-op side. The maze reshuffles between nights, which is already the first thing players are arguing about on the forums — one asked what the point of chalking X marks on the walls is when the route changes underneath you. The team ran a long public demo, patched microphone selection and proximity-chat bugs through it, and pulled it from Steam an hour after launch with a thank-you note to everyone who filed bugs. Opening Early Access reviews are recommending it while being blunt about the state of things: multiplayer stability and lobby QOL need work, but reviewers who put ten hours into the demo are staying to watch it develop. $13.49, cut 20% to $10.79. Windows via Steam. <a href="https://store.steampowered.com/app/3908940/Inferno_Protocol/" target="_blank" rel="noopener">Steam</a></p>
+          </div>
+        </li>
+        <li>
+          <img class="release-img" src="assets/img/lous-lagoon.jpg" alt="Lou's Lagoon key art — a pink-haired pilot in a yellow flight suit carrying a parcel past a yellow seaplane moored at a jetty in a turquoise tropical lagoon" loading="lazy">
+          <div class="release-info">
+            <span class="date">AUG 27</span>
+            <strong>Lou's Lagoon — OUT NOW</strong>
+            <p>Four years after the first prototype, Hamburg studio Tiny Roar's cozy exploration-and-crafting adventure has launched. Your Uncle Lou has disappeared and left you his seaplane and his delivery business, so you fly between the tropical islands of the Limbo archipelago running parcels, collecting resources with a vacuum-like tool called the Swirler, and rebuilding communities the storms wrecked — while the mystery of what happened to Lou unspools underneath. The studio marked the launch with a devlog that is mostly its two CEOs talking through the whole arc: where the concept came from, the inspirations, the ups and downs, and footage dug out of the archives from very early builds, alongside team members picking out what they most want players to find in the archipelago. Their own summary of the project is "our little game (that got way bigger than was ever intended)." A Deluxe Pack adds cosmetics including a bubble fan engine, and a Collector's Edition wraps in the digital artbook. Day-one bug reports are already coming in about inventory slots, and the team is answering them on the forum. $24.99, cut 10% to $22.49. PC via Steam, published by Megabit Publishing and rokaplay. <a href="https://store.steampowered.com/app/2100020/Lous_Lagoon/" target="_blank" rel="noopener">Steam</a></p>
+          </div>
+        </li>
+        <li>
           <img class="release-img" src="assets/img/folk-emerging.jpg" alt="Folk Emerging key art — hunters on a cliff spearing a mammoth at sunset above a valley of tipis and a campfire, with a hooded woman carrying a baby at the right and the game's title above" loading="lazy">
           <div class="release-info">
             <span class="date">AUG 26</span>
@@ -320,30 +362,6 @@
             <span class="date">AUG 25</span>
             <strong>ASTRAL COURT DX — FREE ON STEAM</strong>
             <p>LUA COMPUTA's arcade precision platformer opens on death row in a prison in Heaven. The Astral Court, Heaven's only court and by its own description an odd one, offers The Prisoner bail on the condition of surviving a run of deadly trials — so you platform across the Scales of Justice themselves, several of them at once, collecting stars called Shinies while the arena fills with hazards. The movement is tuned for control over commitment: you can jump even after you've already started falling, then double-jump for height, which turns every near-miss into something recoverable. Multiple characters, and a chrome-and-cloud aesthetic that looks like a late-90s console demo disc. Free, and opening Very Positive at 97% of 67 reviews. Windows via Steam. <a href="https://store.steampowered.com/app/4568830/ASTRAL_COURT_DX/" target="_blank" rel="noopener">Steam</a></p>
-          </div>
-        </li>
-        <li>
-          <img class="release-img" src="assets/img/ultrapool.jpg" alt="Ultrapool key art — a horned bartender mixing a drink beside a cue-holding woman in a neon-lit pool hall, under the chunky ULTRA POOL logo and the words &quot;Out now!&quot;" loading="lazy">
-          <div class="release-info">
-            <span class="date">AUG 24</span>
-            <strong>Ultrapool — OUT NOW</strong>
-            <p>Icedrop Games' pool roguelike deckbuilder is exactly what the name promises: a billiards table wired to a shop economy. Pocketing balls scores points, points become money, and between rounds you spend it at the bar on new balls and upgrades — every ball carries its own effect, so a run turns into a hunt for the combination that chains. Ten escalating rounds per attempt, eight sets of 21 balls to complete, difficulty modifiers, and daily challenges with leaderboards. It's a Godot build localised into 10 languages and light enough for a dual-core with integrated graphics, which is how the same game reached iOS and Android the same day as Steam. Published by offbrand games, the label that put out Rivals of Aether II and teamed with Northernlion on Demon Bluff. A free demo is still up alongside the paid version. $11.99, cut 20% to $9.59. PC via Steam, plus iOS and Android. <a href="https://store.steampowered.com/app/4195110/Ultrapool/" target="_blank" rel="noopener">Steam</a> · <a href="https://play.google.com/store/apps/details?id=com.icedropgames.pool" target="_blank" rel="noopener">Google Play</a> · <a href="https://ultrapoolgame.com/" target="_blank" rel="noopener">Official site</a></p>
-          </div>
-        </li>
-        <li>
-          <img class="release-img" src="assets/img/type-ride.jpg" alt="Type Ride key art — a cast of cartoon ink monsters crowding a blue sky beneath the chunky red TYPERIDE logo" loading="lazy">
-          <div class="release-info">
-            <span class="date">AUG 23</span>
-            <strong>Type Ride — Early Access</strong>
-            <p>NOT__OK's deckbuilding tower defense is played entirely through the keyboard: you type words to summon Ink Monsters from a custom deck, then push them down the lane to break the enemy base. The fiction earns the mechanic — a rogue state-of-the-art printer has flooded the world with ink lifeforms, and the protagonist, once the world's fastest typist and known as the "Type Rider," gets handed a typewriter-shaped summoning device and her old motorcycle. Between fights you draft from more than 50 cartridges; Overlay Cartridges stack on top of summoned monsters to grant abilities or raise stats, so builds compound the deeper a run goes, with items and conditional ultimates as escape valves. Steam achievements are in. $8.99, cut 10% to $8.09 for launch. Windows via Steam. <a href="https://store.steampowered.com/app/3295430/Type_Ride/" target="_blank" rel="noopener">Steam</a></p>
-          </div>
-        </li>
-        <li>
-          <img class="release-img" src="assets/img/gwenblade-witcheresque.jpg" alt="GwenBlade Witcheresque key art — a red-haired woman in a white and black coat drawing a blue blade in a cracked ravine at sunset" loading="lazy">
-          <div class="release-info">
-            <span class="date">AUG 23</span>
-            <strong>GwenBlade Witcheresque — OUT NOW</strong>
-            <p>ArcWillow's soulslike puts its subject up front: Jane is stuck in a city that feeds on her doubts, grief and exhaustion, and the monsters she fights by night are born from her own shadow. The systems are built around that. You save at photobooths, heal at streetlamps and from a rechargeable lighter that only refills if you keep attacking, and when you die you drop everything and have to beat your Shadow — a copy that fights exactly the way you do — to get it back. Two currencies pull against each other: Happiness is spendable but fragile and easily lost, Misery is earned by taking risks and spent on growth, so the upgrade curve literally asks how much you're willing to suffer. Nightmare mode is the intended, punishing version; Daydream keeps the combat challenge but softens the systems around it. Combat is block, parry, kick and poise-break through an interconnected city with unlockable shortcuts. Opening reviews are Positive. $5.00, cut 40% to $3.00. Windows via Steam. <a href="https://store.steampowered.com/app/4354550/GwenBlade_Witcheresque/" target="_blank" rel="noopener">Steam</a></p>
           </div>
         </li>
         </ul>
