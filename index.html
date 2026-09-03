@@ -26,6 +26,83 @@
       <h2>&gt; ITCH.IO NEWS</h2>
       <ul class="news-list">
         <li>
+          <img class="news-img" src="assets/img/itch-app-26-20.jpg" alt="itch app screenshot — a Steam shortcuts dialog listing installed itch games with checkboxes, buttons reading Add installed, Remove missing and Remove all, and a warning that direct shortcuts launch the game's executable as-is, skipping the itch app's runtime configuration and sandboxing" loading="lazy">
+          <span class="tag">[ PLATFORM ]</span>
+          <strong>The itch App Learns to Put Your itch.io Library Inside Steam</strong>
+          <p>
+            The single most common thing an itch.io game has to compete with is the
+            Steam library it isn't in — so itch.io's September 2 app release goes
+            at that directly. v26.20.0 adds a Steam Shortcuts tool, reachable from
+            the app's preferences or by right-clicking any installed game, that
+            writes your itch games into Steam as non-Steam shortcuts and files them
+            in an itch.io collection. The target is stated plainly: people "deep in
+            the Steam ecosystem" on a Steam Deck or in Big Picture mode, who
+            currently have to leave Steam entirely to play anything bought on itch.
+            Two modes, and the trade-off between them is spelled out rather than
+            hidden. <em>Launch with itch</em> routes through the app, so play time
+            lands on your itch.io profile and per-game settings — sandboxing,
+            environment variables, API keys — still apply. <em>Direct</em> points
+            Steam at the executable, which keeps the Steam overlay and Proton out
+            of the app's way but means no sandboxing and no idea the game is
+            running. The plumbing underneath is the part other developers should
+            read. Steam shortcuts needed a way to start a game without the app in
+            the way, so itch built a headless launch mode:
+            <em>itch-setup --run-game &lt;gameId&gt;</em>, a new
+            <em>butler launch</em> subcommand running the launch machinery
+            against your existing app database. It respects everything configured
+            in the app, and itch is explicit that it isn't Steam-specific — "any
+            launcher, shortcut system, or script can use it, and we hope this makes
+            it easier for other launchers to add itch.io integration," with a
+            launcher-integration guide published alongside. HTML5 games are the
+            exception; they need a browser, so the app still opens. Also shipping:
+            <em>Link existing folder…</em>, an escape hatch for games downloaded
+            outside the app — nothing is verified, the app takes your word for
+            what's in the folder, and the game then behaves as installed. The Steam
+            shortcuts feature is flagged as experimental and bug reports invited.
+            <a href="https://itch.io/updates/itch-app-steam-shortcuts-and-headless-launching"
+               target="_blank" rel="noopener">Source: itch.io blog</a> ·
+            <a href="https://itch.io/docs/butler/launcher-integration.html"
+               target="_blank" rel="noopener">Launcher integration guide</a> ·
+            <a href="https://itch.io/app" target="_blank" rel="noopener">itch app</a>
+          </p>
+        </li>
+        <li>
+          <img class="news-img" src="assets/img/brok-brawl-bar.jpg" alt="BROK: The Brawl Bar screenshot — a neon-lit cyberpunk bar full of anthropomorphic animal patrons, with a crocodile in a red jacket on the left and a hyena in a waistcoat and tie on the right saying &quot;Hey, newcomer! Have a seat, please.&quot;" loading="lazy">
+          <span class="tag">[ MAJOR UPDATE ]</span>
+          <strong>Steam Has Workshop. itch.io Doesn't. So One Developer Built His Own.</strong>
+          <p>
+            itch.io has no user-generated-content infrastructure — no Workshop, no
+            in-client mod browser — which for any game built around player-made
+            content means the itch build is structurally the lesser version. COWCAT,
+            the French solo developer behind the accessibility-focused adventure
+            game <em>BROK the InvestiGator</em>, has stopped waiting. Update 1.6.5.1
+            for beat-'em-up spin-off <em>BROK: The Brawl Bar</em>, posted September
+            3, leads with it: "Great news, I have implemented a workshop for
+            non-Steam builds! It will also be shared by mobile versions." Players on
+            the itch.io and mobile builds can now share and download challenges
+            from inside the game itself, with the manual export path from Steam
+            Workshop still available for anyone who wants it — one developer
+            building and hosting a cross-platform UGC pipeline so that the version
+            he sells direct isn't the crippled one. The rest of the patch is
+            characteristically small and specific. The 1.6.5 base, out September 2,
+            added Romanian localisation, made the music loops seamless ("No more
+            hiccups when the loop restarts!"), tidied the root folder, and moved the
+            game onto GameMaker's 2026 LTS — the version jump explained by mobile
+            builds having already been maintained separately on the newer runtime.
+            The hotfix on top fixes a crash returning to the main menu, adds a
+            gamepad button to leave Atlasian Madness, removes an F10 restart key
+            that was being hit by accident, and does two things for the game's blind
+            players: clipboard narration no longer forces autoplay on permanently,
+            and there's a new toggle for whether voices get sent to the narrator at
+            all. The game is 33% off, $9.99 down to $6.69, with Windows, macOS and
+            Linux builds around 1.7GB each.
+            <a href="https://cowcat.itch.io/brok-the-brawl-bar/devlog/1651116/update-165-workshop-on-itch-io-and-more"
+               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
+            <a href="https://cowcat.itch.io/brok-the-brawl-bar"
+               target="_blank" rel="noopener">Game page</a>
+          </p>
+        </li>
+        <li>
           <img class="news-img" src="assets/img/keyframes.png" alt="Keyframes progress graphic — two sets of horizontal bar charts headed Written Content and Visuals, with green, yellow and grey bars labelled Invitationals 90% coded, Canon 33% coded, Side 50% coded, Main Sprites 90% finished, Backgrounds 100% finished and Phone CGs ~57% finished" loading="lazy">
           <span class="tag">[ DELAY ]</span>
           <strong>An Update Bigger Than the Game It Updates: <em>Keyframes</em> Pushes <em>First Summer</em> to November 30</strong>
@@ -142,75 +219,9 @@
           </p>
         </li>
         <li>
-          <img class="news-img" src="assets/img/the-inn-between.jpg" alt="The Inn Between announcement art — a red-haired character in a hooded denim jacket looking back over one shoulder beside a parchment card reading EARLY ACCESS RELEASE! FULL COMMON ROUTE, SEPTEMBER 1ST" loading="lazy">
-          <span class="tag">[ EARLY ACCESS ]</span>
-          <strong>After Years of "Is It Still Being Made?", <em>The Inn Between</em> Opens Its Doors in Early Access</strong>
-          <p>
-            Cats on a Lilypad Studios' BL modern-fantasy visual novel went into Early
-            Access on Steam on September 1 and on itch.io on September 2, after what
-            the announcement calls many years of development, multiple rewrites of
-            the script and "a lot of setbacks — life has not been very kind." The
-            phrasing of the announcement is telling: they had been sitting on the
-            date until Steam approvals came through, and the studio notes it gets
-            asked often whether the game is still being made. What ships is the full
-            common route — 120,000 words across nine chapters with three endings,
-            against an extended demo that covered five chapters and roughly 50,000
-            words. The rest arrives as routes, in a stated order: Emrys, then Leon,
-            then Solas, with each split into two parts, and the next update targeted
-            at November 1 on Steam and November 2 on itch. Beta supporters keep
-            getting work-in-progress chapters as they're written, and Emrys is
-            already through chapter four. The technical work behind the release is
-            the interesting part. The project was migrated from Ren'Py 7 to Ren'Py 8,
-            which forced a rebuild of the entire camera system — and that rebuild
-            bought a toggle to switch off camera panning outright, with the
-            remaining panning slowed down. The in-game phone is no longer on a timer
-            you can get trapped inside; it's player-interactable, which the team says
-            was the plan from the original mockup and only now became possible. Font
-            options were added after research into accessible typefaces and player
-            feedback: the default is Quicksand, joined by OpenDyslexic, Helvetica and
-            — with no apology offered — Comic Sans. The finished game is planned at
-            200,000+ words with three romanceable leads and character art by XianJin.
-            $14.99 on itch.io.
-            <a href="https://cats-on-a-lilypad-studios.itch.io/the-inn-between/devlog/1648322/the-inn-between-enters-early-access"
-               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
-            <a href="https://cats-on-a-lilypad-studios.itch.io/the-inn-between"
-               target="_blank" rel="noopener">Game page</a>
-          </p>
-        </li>
-        <li>
-          <img class="news-img" src="assets/img/all-fonts-pack.jpg" alt="Chequered Ink All Fonts Pack promo — a purple background with the headline SHARE &amp; EARN 10% above a speech bubble containing a grid of font specimen thumbnails and the pack's ALL FONTS 1200+ FONT STYLES MEGA PACK cover" loading="lazy">
-          <span class="tag">[ ASSETS ]</span>
-          <strong>An itch.io Asset Seller With 10,000 Copies Sold Tries Paying Its Customers to Sell It</strong>
-          <p>
-            Chequered Ink's All Fonts Pack is one of the quieter success stories on
-            itch.io's asset side — every commercial font the studio has made, 1,200-plus
-            styles in a 23MB zip, 10,000-plus copies sold on itch alone, rated 5.0
-            across 147 ratings. On September 1 Daniel and Allison opened something
-            unusual for the platform: an affiliate program, paying 10% commission to
-            anyone who shares the pack and drives a sale. It is explicitly a trial,
-            running only through September "(for now)", with sign-up handled off-site
-            on the studio's own website — itch.io has no affiliate machinery of its
-            own, so the revenue split is being administered by hand. The timing is not
-            subtle: the pack is 90% off through the end of the month as part of the
-            Autumn Sale, $190 down to $19, which the store page cheerfully points out
-            is a saving of roughly eighteen thousand dollars against the studio's
-            normal $15-per-font license. The license itself is scoped rather than
-            unlimited — pay once, use forever in unlimited commercial projects, but
-            intended for businesses of 20 employees or fewer with turnover under $2m;
-            anything larger is pushed to standard font licensing. The pack currently
-            contains fonts released up to March 12, 2026, and carries itch.io's "No
-            generative AI was used" tag, which for a font foundry in 2026 is its own
-            kind of sales pitch.
-            <a href="https://ci.itch.io/all-fonts-pack/devlog/1648776/share-our-font-pack-earn-commission"
-               target="_blank" rel="noopener">Source: itch.io devlog</a> ·
-            <a href="https://ci.itch.io/all-fonts-pack"
-               target="_blank" rel="noopener">Asset page</a>
-          </p>
-        </li>
-        <li>
           <img class="news-img" src="assets/img/games-for-scholarships.jpg" alt="Games for Scholarships bundle art — the Games for Change logo above a graduation cap perched on stacks of coins" loading="lazy">
           <span class="tag">[ BUNDLE ]</span>
-          <strong><em>Games for Scholarships</em> Gives Back Its Rebound in a Single Day</strong>
+          <strong><em>Games for Scholarships</em> Posts Its Worst Day Yet: Five Backers, $55</strong>
           <p>
             Organizer jesthehuman's back-to-school bundle collects everything
             submitted to the Games for Scholarships jam — 365 entries across video
@@ -220,16 +231,17 @@
             for a $10 minimum, against a regular value of roughly $681. Every dollar
             goes to Games for Change, funding scholarships for underserved youth in
             the G4C Student Challenge, the nonprofit's global design competition for
-            students aged 10 to 25. Five days after the original $10,000 target
+            students aged 10 to 25. Six days after the original $10,000 target
             fell and the organiser doubled the post to $20,000, the page reads
-            $14,220.57 raised, 71% funded, from 1,178 contributors averaging $12.07
-            each with a $75 top contribution. The past day added $165 and 14
-            backers, which rereads yesterday's number entirely: the $704 jump that
-            broke a four-day slide ($896, $659, $597) now looks like a one-day
-            bump on September 1 rather than a second wind, and this is the weakest
-            day the bundle has posted. Eighteen days left and roughly $5,780 still
-            to find — about $321 a day, against a run rate that just came in at
-            half that.
+            $14,275.57 raised, 71% funded, from 1,183 contributors averaging $12.06
+            each with a $75 top contribution. The past day added $55 and five
+            backers. That is not a slowdown, it is a stop: the bundle has gone
+            $896, $659, $597, $704, $165, $55 over six days, and the $704 bump on
+            September 1 now reads as the last of the back-to-school traffic rather
+            than a turn. The campaign closes 06:59 UTC on September 21 — seventeen
+            days — with $5,724 still to find, or roughly $337 a day against a run
+            rate that just came in at one-sixth of that. The original goal is long
+            since banked; what is at stake now is only the doubled one.
             <a href="https://itch.io/b/3847/games-for-scholarships"
                target="_blank" rel="noopener">Source: itch.io bundle page</a> ·
             <a href="https://itch.io/jam/games-for-scholarships"
@@ -245,7 +257,7 @@
         <li>
           <img class="news-img" src="assets/img/fall-in-love-festival.jpg" alt="Fall in Love Visual Novel Festival banner — two anime women, one with long blue hair and one with pink curls, embracing in a sunlit conservatory beside the pink script logo FALL IN LOVE and the line PRESENTED BY STUDIO ELAN in a heart" loading="lazy">
           <span class="tag">[ FESTIVAL ]</span>
-          <strong>A Visual Novel Studio Runs Its Own Steam Festival — and Today It Puts On a Showcase</strong>
+          <strong>A Visual Novel Studio Runs Its Own Steam Festival, Showcase and All</strong>
           <p>
             Steam's calendar is dominated by Valve-run sales, so it's worth noting
             who is behind the Fall in Love Festival, running September 1 to 9: not
@@ -261,9 +273,9 @@
             and political-intrigue romance (<em>Imperial Grace</em>), a rotoscoped
             interactive comic (<em>After the Wane</em>), and <em>Devil's
             Liminal</em>, which shipped its 1.0 into the middle of it. The
-            festival's own showcase stream airs today, September 3, at 19:00 UTC —
-            7am Friday, September 4, in the host's timezone — running trailers for
-            featured games. What the festival is actually worth is best measured in
+            festival's own showcase stream ran trailers for featured games on
+            September 3 at 19:00 UTC; the sale itself has five days left. What the
+            festival is actually worth is best measured in
             what small teams do with it: Maroon Ink Studio timed the first public
             demo of <em>Nozomu School Daze</em> to opening day, then spelled out
             the arithmetic behind the ask most developers dress up — "Steam reviews
@@ -302,8 +314,24 @@
     </section>
 
     <section class="card">
-      <h2>&gt; INDIE GAME RELEASES — AUGUST&ndash;SEPTEMBER 2026</h2>
+      <h2>&gt; INDIE GAME RELEASES — SEPTEMBER 2026</h2>
       <ul class="news-list release-list">
+        <li>
+          <img class="release-img" src="assets/img/worming-from-home.jpg" alt="Worming from Home key art — a pink earthworm wearing a green necktie curled above the title, seen from overhead against a purple desk scattered with pencils, a keyboard, a mug and a rising stock chart" loading="lazy">
+          <div class="release-info">
+            <span class="date">SEP 4</span>
+            <strong>Worming from Home — OUT TODAY</strong>
+            <p>The demo has been sitting on Steam since January 30 at 98% positive across 335 reviews, which is a strange number for a game whose entire pitch is that you are a worm with a finance job. Zach Northrop and Mason Sabharwal's remote-work simulator launches today: you are a junior financial analyst, you are an annelid, and the office does not appear to have noticed. Everything is ragdoll physics and no hands — you fling your spineless body across the keyboard to squirm between keys and fill spreadsheet cells, leap onto the mouse to navigate, hop onto the phone to take or kill a call. Around the work sits a whole life to mismanage: the gym, shopping, socialising, reading, and a stock market to invest the salary in, with promotions, upgrades and cosmetics as the progression. It is single-player, Windows and macOS, with Steam Cloud and achievements, and localised into French, German, Spanish, Japanese, Russian and Simplified Chinese — the last of which suggests someone expects the streaming clips to travel. The obvious comparison, made at announcement and never really shaken off, is QWOP by way of <em>Earthworm Jim</em>, except that Jim at least had the suit. <a href="https://store.steampowered.com/app/3547270/Worming_from_Home/" target="_blank" rel="noopener">Steam</a> · <a href="https://store.steampowered.com/app/4329950/Worming_from_Home_Demo/" target="_blank" rel="noopener">Demo</a> · <a href="https://www.gamespew.com/2026/01/worming-from-home-announced/" target="_blank" rel="noopener">GameSpew</a></p>
+          </div>
+        </li>
+        <li>
+          <img class="release-img" src="assets/img/speedrunners-2.jpg" alt="SpeedRunners 2: King of Speed key art — a masked runner in a black bodysuit sprinting to the right against a purple city backdrop, beside the game's logo and a green banner reading NOW AVAILABLE" loading="lazy">
+          <div class="release-info">
+            <span class="date">SEP 3</span>
+            <strong>SpeedRunners 2: King of Speed — OUT NOW</strong>
+            <p>The sequel to one of the defining couch-and-lobby indie multiplayer games of the 2010s arrived September 3 on PC, PS5, Xbox Series and Switch, with Game Pass on day one — and the opening reception is the story. Fair Play Labs and tinyBuild have built out everything the original was short of: up to eight players per online lobby instead of four, a story campaign through New Rush City with new and returning heroes, ranked play, 64-player elimination tournaments, local multiplayer, 12 characters, and an expanded power-up arsenal that keeps the fireballs and freeze rays while adding blasters and portable teleporters. The netcode was rebuilt. And yet Steam has it at Mixed, 59% of 112 reviews, for a series whose first game sits Overwhelmingly Positive on tens of thousands — a gap that is worth watching over the next fortnight, because a competitive game's launch-week review score and its six-month one are frequently different games. $9.99, cut 10% to $8.99 until September 17. 32 achievements, Windows via Steam. <a href="https://store.steampowered.com/app/3183760/SpeedRunners_2_King_of_Speed/" target="_blank" rel="noopener">Steam</a> · <a href="https://www.gematsu.com/2026/07/speedrunners-2-king-of-speed-launches-september-3" target="_blank" rel="noopener">Gematsu</a></p>
+          </div>
+        </li>
         <li>
           <img class="release-img" src="assets/img/moonlighter-2.jpg" alt="Moonlighter 2: The Endless Vault key art — a white-haired adventurer in a green tunic running out of a rocky dungeon with a glowing blue sword, over the title and the line 1.0 IS OUT NOW" loading="lazy">
           <div class="release-info">
@@ -326,6 +354,14 @@
             <span class="date">SEP 2</span>
             <strong>ShipShaper: Falconeer Chronicles — EARLY ACCESS</strong>
             <p>Tomas Sala, the BAFTA-nominated solo developer of <em>The Falconeer</em> and <em>Bulwark: Falconeer Chronicles</em>, has put out something with no fail state and no campaign: a game about designing ships, published by Wired Productions with Gamersky Games. You pull, push and drag hull forms into shape — fishing boat to dreadnought — without knowing anything about 3D modelling, then take the result out to sail, where hull shape, propulsion and weight decide how it actually behaves. The part that makes it more than a toy is the export path. Ships come out as FBX or STL for 3D printing or for use in your own projects, under a free commercial licence, and they can be loaded straight into <em>Bulwark</em> — a solo developer treating his own back catalogue as an asset pipeline for other people's work. The Early Access statement is unusually relaxed about scope: minimum three months, with the core feature set already substantially there, and the roadmap listing airships with balloons and flight, an expanded test drive with gun aiming and firing, a ship-analysis system that generates stats, themed content packs (carriers, ocean liners, Asian hull designs) and quality-of-life work. Windows, with Linux via Proton. 10% launch discount. Opening reception is 100% positive across 21 reviews. <a href="https://store.steampowered.com/app/4339280/ShipShaper_Falconeer_Chronicles/" target="_blank" rel="noopener">Steam</a> · <a href="https://wiredproductions.com/game-news/tomas-salas-shipshaper-launches/" target="_blank" rel="noopener">Wired Productions</a></p>
+          </div>
+        </li>
+        <li>
+          <img class="release-img" src="assets/img/angeline-era.jpg" alt="Angeline Era key art — a hand-drawn illustration of a winged blonde angel reaching forward with a green-haired swordfighter crouched beside her, against a dark blue starfield with the ornate Angeline Era logo and a glowing red hourglass sigil" loading="lazy">
+          <div class="release-info">
+            <span class="date">SEP 2</span>
+            <strong>Angeline Era — NOW ON CONSOLES</strong>
+            <p>Melos Han-Tani and Marina Kittaka — Analgesic Productions, the pair behind <em>Anodyne</em> and <em>Sephonie</em> — have brought their 3D action-adventure to PS5, PS4, Xbox Series, Xbox One and Switch, self-publishing the ports rather than handing them to a label. The PC version has been out since December 2025 and sits Overwhelmingly Positive, 95% of 642 reviews, which is the kind of number that usually belongs to something far more conventional than this. Combat is "Bumpslash": you attack by walking into enemies, no button, and the whole fast, twitchy system comes out of that one decision. The world is a vast unmarked overworld where, as the store copy has it, every level is hidden in plain sight — forests, mountains, mines, ruined buildings and towns, no map markers, a non-linear route through. Tets Kinoshta, an ex-soldier, allies with an angel named Arkas Gemini to work out what the dormant mothership Throne is for; the lore draws on Irish mythology and early Christian philosophy and runs on betrayal and fruitless yearning, cut with what the developers cheerfully call hilarious hazards. A first playthrough runs 20 to 30 hours, 15 if you're direct about it. $24.99 on consoles; the Steam build is 20% off to $19.99. Xbox Smart Delivery, and Switch 2 runs it at a boosted handheld frame rate. <a href="https://store.steampowered.com/app/2393920/Angeline_Era/" target="_blank" rel="noopener">Steam</a> · <a href="https://www.rpgsite.net/news/21100-angeline-era-ps5-switch-xbox-release-date-3d-action-rpg" target="_blank" rel="noopener">RPG Site</a> · <a href="https://rpgamer.com/2026/09/new-release-round-up-september-3-2026/" target="_blank" rel="noopener">RPGamer round-up</a></p>
           </div>
         </li>
         <li>
@@ -352,29 +388,15 @@
             <p>Firevolt's self-published co-op adventure puts two players in a pair of tiny RC cars inside a missing professor's house-sized laboratory, where the ordinary scale of a home becomes the level design: shelves to race across, cluttered desks to drift through, oversized obstacles to get around. It is two-player only and built so that neither half can brute-force it alone — the puzzles are timing and communication problems that need both cars doing their part — and the cars gain gadgets as you go, rope-swings, magnetic wheels and magnet grabs that reopen rooms you've already been through. The commercial detail worth noting is the Friend's Pass: one purchase brings a second player in free, the model <em>It Takes Two</em> and <em>Split Fiction</em> normalised and which is now filtering down to games at a fifth of their budget. Opening reception is Mostly Positive at 38 of 48 reviews, which for a game entirely dependent on having a willing partner is a reasonable start. $19.99, cut 10% to $17.99, 21 achievements, Windows via Steam. <a href="https://store.steampowered.com/app/3905450/WheelMates/" target="_blank" rel="noopener">Steam</a></p>
           </div>
         </li>
-        <li>
-          <img class="release-img" src="assets/img/sucker-for-love-crush-landing.jpg" alt="Sucker for Love: Crush Landing screenshot — a hand-drawn retro-anime woman in a wide black hat, her body patterned in swirling rainbow colours, standing in a wrecked apartment whose torn wall opens onto a night skyline, with yellow subtitle text at the bottom" loading="lazy">
-          <div class="release-info">
-            <span class="date">AUG 31</span>
-            <strong>Sucker for Love: Crush Landing — OUT NOW</strong>
-            <p>Akabaka's Lovecraftian dating-horror series returns with a standalone entry that opens by promising, in its own Steam feature list, "We really, <em>really</em> promise there's no horror in this one." A comet crash-lands in your living room. Her name is Hheily, she is sentient, she can shapeshift into anything including a person, and she needs feeding — so the loop is keeping her flame alive while her presence warps the neighbourhood around you: plants running wild, colours intensifying, animals mutating, and other things drawn to the heat. The literary sourcing is stated outright and is more specific than usual for the genre: H.P. Lovecraft's <em>The Colour Out of Space</em> and Clark Ashton Smith's <em>The City of the Singing Flame</em>. The apartment from the first game returns as a hand-drawn 360-degree environment, and the script is fully voiced across thousands of lines with multiple endings driven by your choices. The developers describe the content as adult themes plus "comically disturbing body horror" with nothing explicit. Published by Black Lantern Collective, 19 achievements, English audio and subtitles. $12.99, cut 10% to $11.69 until September 7; there's also an "Eldritch Cuties" bundle with <em>Monster Prom 4</em>. Windows via Steam. It went up yesterday, so there's no Steam review score yet — third-party tracker Raijin clocked 258 concurrent players against an estimated 13,000-odd wishlists on launch day. <a href="https://store.steampowered.com/app/3848900/Sucker_for_Love_Crush_Landing/" target="_blank" rel="noopener">Steam</a> · <a href="https://raijin.gg/app/3848900/Sucker_for_Love_Crush_Landing" target="_blank" rel="noopener">Raijin stats</a></p>
-          </div>
-        </li>
-        <li>
-          <img class="release-img" src="assets/img/breathedge-2.jpg" alt="Breathedge 2 screenshot — a first-person view in open space of orange-gloved hands holding a pipe, surrounded by grey asteroids strung with glowing blue organic growths, a small white drone and the wreckage of a station terminal" loading="lazy">
-          <div class="release-info">
-            <span class="date">AUG 31</span>
-            <strong>Breathedge 2 — EARLY ACCESS</strong>
-            <p>RedRuins Softworks' space-survival comedy sequel is out in Early Access via HypeTrain Digital, and it opens with the Breathedge Corporation having started a galaxy-wide war, built an army of Coffinbots and attacked the largest human settlements — at which point the Man and the AI living in his spacesuit accidentally derail the takeover, become target number one, and then get attacked by their own side. The store copy is unbothered about continuity: "everything will be equally confusing to <em>Breathedge</em> veterans and complete newcomers alike." What ships today is the first major story chapter and one large area, with the full survival and open-space exploration kit — oxygen and temperature management, scavenging, crafting, upgrades, repairs, combat, main and side quests, NPCs — plus, per tradition, an ocean of duct tape. The team is upfront that Early Access is a scale decision for a small studio and expects to stay there roughly 16–20 months, adding the rest of the story, planetary-surface gameplay, base building, and transport running from small flying and ground vehicles up to a personal spacecraft and a warp-jump system. They also warn the price will rise gradually with each major update, so this is the floor. Opening reception is Very Positive, 91% of 116 reviews. $19.99, cut 20% to $15.99 until September 12. PC via Steam, with PS5 announced. <a href="https://store.steampowered.com/app/2412960/Breathedge_2/" target="_blank" rel="noopener">Steam</a> · <a href="https://bleedingcool.com/games/breathedge-2-officially-comes-to-early-access-on-august-31/" target="_blank" rel="noopener">Bleeding Cool</a></p>
-          </div>
-        </li>
         </ul>
       <p class="source-note">
         Release list sources:
         <a href="https://www.greenmangaming.com/blog/indie-game-release-round-up-september-2026/"
            target="_blank" rel="noopener">Green Man Gaming — Indie Game Release Round-Up, September 2026</a>,
-        <a href="https://www.gamegrin.com/news/top-27-new-steam-games-this-week-10th16th-of-august-2026"
-           target="_blank" rel="noopener">GameGrin — Top 27 New Steam Games This Week (10th–16th of August 2026)</a>,
+        <a href="https://rpgamer.com/2026/09/new-release-round-up-september-3-2026/"
+           target="_blank" rel="noopener">RPGamer — New Release Round-Up (September 3, 2026)</a>,
+        <a href="https://www.gamegrin.com/news/top-11-new-steam-games-this-week-25th31st-of-august/"
+           target="_blank" rel="noopener">GameGrin — Top 11 New Steam Games This Week (25th–31st of August)</a>,
         <a href="https://store.steampowered.com/search/?sort_by=Released_DESC&amp;category1=998"
            target="_blank" rel="noopener">Steam — new releases by date</a>,
         plus per-entry Steam / press links above.
