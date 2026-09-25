@@ -21,6 +21,7 @@
         ...options,
         signal: controller.signal,
         cache: 'no-store',
+        targetAddressSpace: 'local',
         headers: {'Content-Type':'application/json', ...(options.headers || {})}
       });
       const data = await response.json();
@@ -34,6 +35,7 @@
   async function connect() {
     setStatus('checking', '正在通过 Tailscale 连接…');
     localStorage.setItem('a4-tailnet-backend', endpoint());
+    $('private-link').href = `${endpoint()}/`;
     try {
       const data = await request('/api/status');
       if (data.mode !== 'tailnet-relay') throw new Error('目标不是受限报文接收器');
@@ -42,7 +44,7 @@
       setStatus('online', `Mac mini 已连接 · ${ai} · ${printer}`);
     } catch (error) {
       const detail = error.name === 'AbortError' ? '连接超时' : error.message;
-      setStatus('error', `${detail}；请打开 iPad 的 Tailscale`);
+      setStatus('error', `${detail}；请打开 Tailscale，并允许 CyberCycho 访问本地网络`);
     }
   }
 
@@ -78,6 +80,9 @@
   if (saved) $('backend').value = saved;
   $('connect-btn').addEventListener('click', connect);
   $('send-btn').addEventListener('click', send);
-  $('backend').addEventListener('change', () => setStatus('checking', '地址已改变，请重新连接'));
+  $('backend').addEventListener('change', () => {
+    $('private-link').href = `${endpoint()}/`;
+    setStatus('checking', '地址已改变，请重新连接');
+  });
   connect();
 })();
