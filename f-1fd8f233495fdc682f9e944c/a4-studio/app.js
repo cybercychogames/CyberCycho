@@ -272,7 +272,16 @@
     fields.forEach(id => $(id).addEventListener(id === 'role-id' ? 'change' : 'input', updateDraft));
     document.querySelectorAll('[data-jump]').forEach(button => button.addEventListener('click', () => $(button.dataset.jump).scrollIntoView()));
     $('work-form').addEventListener('submit', event => { event.preventDefault(); guarded(() => saveWork(true)); });
-    $('base-preview-btn').addEventListener('click', () => guarded(() => saveWork(false)));
+    $('base-preview-btn').addEventListener('click', () => guarded(async () => {
+      if (state.mode === 'demo') {
+        const role = selectedRole();
+        if (!role) throw new Error('请先选择角色');
+        window.open(`A4共同创作-40角色底纸.pdf#page=${Number(role.id)}`, '_blank', 'noopener');
+        message(`已打开 40 角色底纸的第 ${Number(role.id)} 页。`);
+        return;
+      }
+      await saveWork(false);
+    }));
     $('base-print-btn').addEventListener('click', () => guarded(printBase));
     $('refresh-btn').addEventListener('click', () => guarded(refreshWork));
     $('image-input').addEventListener('change', event => guarded(() => uploadImage(event.target.files[0])));
