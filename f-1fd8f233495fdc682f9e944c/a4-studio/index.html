@@ -78,18 +78,20 @@
     </section>
 
     <section class="panel" id="generate">
-      <div class="section-head"><div><span class="step">STEP 02</span><h2>等待 Codex 完成图片</h2></div></div>
+      <div class="section-head"><div><span class="step">STEP 02</span><h2>用百炼生成图片</h2></div></div>
       <div class="ai-layout">
         <div class="ai-state">
           <div class="big-icon">✦</div>
           <h3 id="ai-title">先保存作品记录</h3>
-          <p id="ai-help">保存后，可在 iPad ChatGPT 中粘贴提示词生图；保存图片后回到这里选择成图。</p>
+          <p id="ai-help">保存后点击“一键百炼生图”，图片会自动生成并回填。需要时也可用 iPad ChatGPT 或从照片、文件中选择成图。</p>
           <code id="target-file">尚未分配图片文件</code>
           <div class="actions compact">
+            <button class="primary" id="bailian-generate-btn" disabled>一键百炼生图</button>
             <button class="secondary" id="refresh-btn">刷新状态</button>
             <a class="secondary button-link" href="https://chatgpt.com/" target="_blank" rel="noopener">打开 ChatGPT</a>
             <label class="file-button">从照片/文件选择成图<input type="file" id="image-input" accept="image/png,image/jpeg,image/webp"></label>
           </div>
+          <p class="small">默认 qwen-image-3.0 · 方形 1 张 · 关闭水印 · 失败后不自动重试</p>
         </div>
         <figure class="result-preview empty" id="image-wrap">
           <div id="image-placeholder">AI 图片会出现在这里</div>

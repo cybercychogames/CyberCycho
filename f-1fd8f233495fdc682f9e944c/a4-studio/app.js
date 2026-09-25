@@ -1,6 +1,6 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const state = { mode: 'checking', roles: [], record: null };
+  const state = { mode: 'checking', roles: [], record: null, bailian: null };
   const fields = ['work-id','class-name','author','role-id','colors','keep','place','action','original-words','title'];
   const fieldMap = {
     'work-id':'work_id','class-name':'class_name',author:'author','role-id':'role_id',colors:'colors',keep:'keep',
@@ -14,6 +14,7 @@
 
   function setMode(mode, status) {
     state.mode = mode;
+    state.bailian = status?.bailian || null;
     $('connection').className = `connection ${mode}`;
     $('connection').querySelector('b').textContent = mode === 'local'
       ? `${status.printer.name} · ${status.printer.idle ? '空闲' : '已连接'}`
@@ -40,7 +41,7 @@
   async function detectMode() {
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 1800);
+      const timer = setTimeout(() => controller.abort(), 5000);
       const response = await fetch('/api/status', {signal: controller.signal, cache:'no-store'});
       clearTimeout(timer);
       const type = response.headers.get('content-type') || '';
@@ -48,7 +49,11 @@
       const status = await response.json();
       if (status.mode !== 'local') throw new Error();
       setMode('local', status);
-      message(status.printer.online ? '现场后台和 Epson 打印机均已连接。' : '现场后台已连接，打印机需要检查。', !status.printer.online);
+      const aiReady = status.bailian?.authenticated;
+      message(status.printer.online && aiReady
+        ? `现场后台、百炼 ${status.bailian.model} 和 Epson 打印机均已连接。`
+        : status.printer.online ? '现场后台和打印机已连接，百炼需要检查。' : '现场后台已连接，打印机需要检查。',
+      !(status.printer.online && aiReady));
     } catch (_) {
       setMode('demo', null);
       message('公网预览已打开。现场打印功能只在 Mac 局域网操作台中启用。');
@@ -105,10 +110,16 @@
     $('work-status').textContent = record.status;
     $('prompt-preview').textContent = record.prompt;
     $('target-file').textContent = record.expected_image_file || '等待后台分配';
-    $('ai-title').textContent = record.urls?.image ? '图片已经就位' : '等待 Codex 生图';
-    $('ai-help').textContent = record.urls?.image
-      ? '请让孩子查看图片，然后进入下一步核对。'
-      : 'Codex 按上面的提示词生成 PNG，并保存到指定文件。页面会自动检查。';
+    const generating = record.status === '生成中';
+    const failed = record.status === '生成失败';
+    $('ai-title').textContent = generating ? '百炼正在生成图片'
+      : failed ? '本次生成失败'
+      : record.urls?.image ? '图片已经就位' : '可以一键生成图片';
+    $('ai-help').textContent = generating ? '请等待当前任务完成，页面每 5 秒自动刷新。'
+      : failed ? `${record.generation_error || '请检查百炼状态后手动重试。'} 系统不会自动扣费重试。`
+      : record.urls?.image ? '请让孩子查看图片，然后进入下一步核对。'
+      : '点击“一键百炼生图”即可自动生成并回填；也可以继续使用 iPad ChatGPT 或手动选择图片。';
+    $('bailian-generate-btn').disabled = generating || state.mode !== 'local' || !state.bailian?.authenticated;
     $('base-strip').hidden = !record.urls?.base_preview;
     if (record.urls?.base_preview) {
       $('base-preview').src = `${record.urls.base_preview}?v=${Date.now()}`;
@@ -136,7 +147,7 @@
       const record = {...data, role_name:role.name, feature:role.feature, prompt:buildPrompt(data, role), status:'演示记录', urls:{}};
       localStorage.setItem('a4-console-demo', JSON.stringify(record));
       applyRecord(record);
-      message('演示记录已保存在这台设备的浏览器中。现场模式会同时生成 Codex 请求和底纸预览。');
+      message('演示记录已保存在这台设备的浏览器中。现场模式会同时生成 AI 请求和底纸预览。');
       if (scroll) $('generate').scrollIntoView();
       return record;
     }
@@ -144,7 +155,7 @@
     if (state.record?.work_id === data.work_id) payload.replace = true;
     const result = await api('/api/works', {method:'POST', body:JSON.stringify(payload)});
     applyRecord(result.record);
-    message(`作品 ${result.record.work_id} 已保存，Codex 请求已经生成。`);
+    message(`作品 ${result.record.work_id} 已保存，可以一键调用百炼生图。`);
     if (scroll) $('generate').scrollIntoView();
     return result.record;
   }
@@ -152,13 +163,13 @@
   async function refreshWork() {
     if (!state.record?.work_id) throw new Error('请先保存作品记录');
     if (state.mode === 'demo') {
-      message('公网预览不会连接本地图片目录。现场模式下 Codex 图片落盘后会显示在这里。');
+      message('公网预览不会连接本地图片目录。现场模式下 AI 图片生成或导入后会显示在这里。');
       return;
     }
     const result = await api(`/api/works/${encodeURIComponent(state.record.work_id)}`);
     const hadImage = Boolean(state.record.urls?.image);
     applyRecord(result.record);
-    message(!hadImage && result.record.urls?.image ? '检测到 Codex 成图，可以和孩子核对了。' : `当前状态：${result.record.status}`);
+    message(!hadImage && result.record.urls?.image ? '检测到 AI 成图，可以和孩子核对了。' : `当前状态：${result.record.status}`);
   }
 
   async function uploadImage(file) {
@@ -177,6 +188,19 @@
     applyRecord(result.record);
     message('成图已经放入当前作品，请和孩子一起核对。');
     $('review').scrollIntoView();
+  }
+
+  async function generateWithBailian() {
+    if (!state.record?.work_id) throw new Error('请先保存作品记录');
+    if (state.mode !== 'local') throw new Error('公网预览不能调用百炼');
+    if (!state.bailian?.authenticated) throw new Error('百炼尚未登录');
+    if (state.record.urls?.image && !window.confirm('这会重新生成一张图片并替换当前成图，继续吗？')) return;
+    $('bailian-generate-btn').disabled = true;
+    const result = await api(`/api/works/${encodeURIComponent(state.record.work_id)}/generate`, {
+      method:'POST', body:'{}'
+    });
+    applyRecord(result.record);
+    message(`百炼 ${result.generation.model} 已开始生成 1 张图片。请稍候，失败后不会自动重试。`);
   }
 
   async function copyPrompt() {
@@ -304,6 +328,7 @@
     }));
     $('base-print-btn').addEventListener('click', () => guarded(printBase));
     $('refresh-btn').addEventListener('click', () => guarded(refreshWork));
+    $('bailian-generate-btn').addEventListener('click', () => guarded(generateWithBailian));
     $('copy-prompt-btn').addEventListener('click', () => guarded(copyPrompt));
     $('image-input').addEventListener('change', event => guarded(() => uploadImage(event.target.files[0])));
     $('review-btn').addEventListener('click', () => guarded(review));
@@ -314,7 +339,9 @@
     $('dialog-check').addEventListener('change', updateDialogButton);
     $('dialog-confirmation').addEventListener('input', updateDialogButton);
     updateDraft();
-    setInterval(() => { if (state.mode === 'local' && state.record?.work_id && !state.record.urls?.image) guarded(refreshWork); }, 5000);
+    setInterval(() => {
+      if (state.mode === 'local' && state.record?.work_id && (state.record.status === '生成中' || !state.record.urls?.image)) guarded(refreshWork);
+    }, 5000);
   }
 
   init();
