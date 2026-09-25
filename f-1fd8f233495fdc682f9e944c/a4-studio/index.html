@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="科技节 A4 共同创作操作台：选角色、写冒险、AI 作画、核对与右侧补印。">
+  <title>A4 共同创作操作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">科技节 · A4 共同创作</p>
+      <h1>创作操作台</h1>
+    </div>
+    <div class="connection" id="connection"><span></span><b>正在检查现场后台</b></div>
+  </header>
+
+  <main>
+    <aside class="progress" aria-label="流程进度">
+      <button class="active" data-jump="design"><b>1</b><span>记录想法</span></button>
+      <button data-jump="generate"><b>2</b><span>AI 作画</span></button>
+      <button data-jump="review"><b>3</b><span>一起核对</span></button>
+      <button data-jump="print"><b>4</b><span>确认补印</span></button>
+    </aside>
+
+    <section class="mode-note" id="mode-note" hidden></section>
+
+    <section class="panel" id="design">
+      <div class="section-head">
+        <div><span class="step">STEP 01</span><h2>记录孩子的选择和原话</h2></div>
+        <span class="status-pill" id="work-status">尚未保存</span>
+      </div>
+
+      <form id="work-form">
+        <div class="form-grid three">
+          <label>作品编号<input id="work-id" name="work_id" required maxlength="40" autocomplete="off" placeholder="例如 2A-008"></label>
+          <label>班级<input id="class-name" name="class_name" required maxlength="20" autocomplete="off" placeholder="例如 二（1）班"></label>
+          <label>作者<input id="author" name="author" required maxlength="20" autocomplete="off" placeholder="孩子姓名"></label>
+        </div>
+
+        <div class="form-grid two">
+          <label>选择底纸角色<select id="role-id" name="role_id" required><option value="">请选择 01–40</option></select></label>
+          <div class="role-card" id="role-card"><span>角色信息</span><b>选择角色后显示</b><small>观察重点会自动带入 AI 提示词</small></div>
+        </div>
+
+        <div class="form-grid two">
+          <label>实际使用的颜色<input id="colors" name="colors" required maxlength="50" placeholder="例如 粉色身体、红色脚"></label>
+          <label>最想保留的细节<input id="keep" name="keep" required maxlength="50" placeholder="例如 圆身体和红色脚"></label>
+          <label>冒险地点<input id="place" name="place" required maxlength="50" placeholder="例如 丛林里"></label>
+          <label>正在做什么<input id="action" name="action" required maxlength="60" placeholder="例如 参加拯救塞尔达的冒险"></label>
+        </div>
+
+        <label>孩子的原话<textarea id="original-words" name="original_words" required maxlength="120" rows="3" placeholder="尽量原样记录孩子说的完整一句话"></textarea></label>
+        <label>作品名字<input id="title" name="title" required maxlength="30" placeholder="例如 卡比的丛林救援"></label>
+
+        <div class="prompt-card">
+          <span>交给 AI 的内容</span>
+          <p id="prompt-preview">填完上面的内容后，这里会显示完整提示词。班级和作者不会交给 AI。</p>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="secondary" id="base-preview-btn">查看底纸</button>
+          <button type="submit" class="primary">保存并准备生图</button>
+        </div>
+      </form>
+
+      <div class="print-strip" id="base-strip" hidden>
+        <div><b>第一次打印 · 角色底纸</b><p>空白 A4，系统只打印刚才选择的角色页。</p></div>
+        <button class="secondary" id="base-print-btn">确认后打印底纸</button>
+      </div>
+      <figure class="paper-preview" id="base-preview-wrap" hidden>
+        <img id="base-preview" alt="角色底纸打印预览">
+        <figcaption>横向 A4 · 右上角半箭头 · 中缝无箭头</figcaption>
+      </figure>
+    </section>
+
+    <section class="panel" id="generate">
+      <div class="section-head"><div><span class="step">STEP 02</span><h2>等待 Codex 完成图片</h2></div></div>
+      <div class="ai-layout">
+        <div class="ai-state">
+          <div class="big-icon">✦</div>
+          <h3 id="ai-title">先保存作品记录</h3>
+          <p id="ai-help">保存后，后台会生成一份 Codex 生图请求和目标文件名。</p>
+          <code id="target-file">尚未分配图片文件</code>
+          <div class="actions compact">
+            <button class="secondary" id="refresh-btn">刷新状态</button>
+            <label class="file-button">手动放入成图<input type="file" id="image-input" accept="image/png,image/jpeg,image/webp"></label>
+          </div>
+        </div>
+        <figure class="result-preview empty" id="image-wrap">
+          <div id="image-placeholder">AI 图片会出现在这里</div>
+          <img id="result-image" alt="AI 生成结果" hidden>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel" id="review">
+      <div class="section-head"><div><span class="step">STEP 03</span><h2>和孩子一起核对</h2></div></div>
+      <p class="instruction">请孩子先看图，再各说出一项。这里记录的是观察结果，不需要重新写故事。</p>
+      <div class="form-grid two">
+        <label>什么保留了？<input id="review-keep" maxlength="60" placeholder="例如 圆身体和红色脚保留了"></label>
+        <label>什么变化了？<input id="review-change" maxlength="60" placeholder="例如 森林里多了一座城堡"></label>
+      </div>
+      <div class="actions"><button class="primary" id="review-btn">完成核对</button></div>
+    </section>
+
+    <section class="panel" id="print">
+      <div class="section-head"><div><span class="step">STEP 04</span><h2>生成预览，再确认右侧补印</h2></div></div>
+      <div class="actions top-actions">
+        <button class="primary" id="overlay-btn">生成右侧补印预览</button>
+        <a class="secondary button-link" id="overlay-pdf" hidden target="_blank" rel="noopener">打开 PDF</a>
+      </div>
+      <figure class="paper-preview" id="overlay-preview-wrap" hidden>
+        <img id="overlay-preview" alt="A4 右侧补印预览">
+        <figcaption>完整 A4 页面 · 只有右侧安全区有内容 · 不翻转</figcaption>
+      </figure>
+
+      <div class="confirm-box" id="confirm-box" hidden>
+        <h3>放纸后逐项确认</h3>
+        <label class="check"><input type="checkbox" data-print-check>这是刚才这位孩子的同一张作品纸</label>
+        <label class="check"><input type="checkbox" data-print-check>打印面朝向正确，右上角箭头指向右边</label>
+        <label class="check"><input type="checkbox" data-print-check>沿长边进纸，预览中的内容只在右半边</label>
+        <label class="check"><input type="checkbox" data-print-check>打印机里一次只放这一张作品纸</label>
+        <label>输入确认词<input id="confirmation" autocomplete="off" placeholder="输入：确认打印"></label>
+        <button class="danger" id="overlay-print-btn" disabled>提交右侧补印</button>
+        <p class="small">系统不会自动重试。提交成功后会显示 Epson 任务编号。</p>
+      </div>
+    </section>
+
+    <section class="log-panel" aria-live="polite">
+      <b>操作记录</b><p id="message">正在初始化操作台……</p>
+    </section>
+  </main>
+
+  <dialog id="print-dialog">
+    <form method="dialog">
+      <h2 id="dialog-title">打印前确认</h2>
+      <p id="dialog-copy"></p>
+      <label class="check"><input type="checkbox" id="dialog-check">我已核对纸张、作品编号和打印预览</label>
+      <label>输入确认词<input id="dialog-confirmation" autocomplete="off" placeholder="输入：确认打印"></label>
+      <div class="actions"><button value="cancel" class="secondary">取消</button><button value="confirm" class="danger" id="dialog-submit" disabled>提交打印</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
