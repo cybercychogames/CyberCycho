@@ -57,7 +57,7 @@
         <label>作品名字<input id="title" name="title" required maxlength="30" placeholder="例如 卡比的丛林救援"></label>
 
         <div class="prompt-card">
-          <span>交给 AI 的内容</span>
+          <div class="prompt-title"><span>交给 AI 的内容</span><button type="button" class="mini-button" id="copy-prompt-btn">复制提示词</button></div>
           <p id="prompt-preview">填完上面的内容后，这里会显示完整提示词。班级和作者不会交给 AI。</p>
         </div>
 
@@ -83,11 +83,12 @@
         <div class="ai-state">
           <div class="big-icon">✦</div>
           <h3 id="ai-title">先保存作品记录</h3>
-          <p id="ai-help">保存后，后台会生成一份 Codex 生图请求和目标文件名。</p>
+          <p id="ai-help">保存后，可在 iPad ChatGPT 中粘贴提示词生图；保存图片后回到这里选择成图。</p>
           <code id="target-file">尚未分配图片文件</code>
           <div class="actions compact">
             <button class="secondary" id="refresh-btn">刷新状态</button>
-            <label class="file-button">手动放入成图<input type="file" id="image-input" accept="image/png,image/jpeg,image/webp"></label>
+            <a class="secondary button-link" href="https://chatgpt.com/" target="_blank" rel="noopener">打开 ChatGPT</a>
+            <label class="file-button">从照片/文件选择成图<input type="file" id="image-input" accept="image/png,image/jpeg,image/webp"></label>
           </div>
         </div>
         <figure class="result-preview empty" id="image-wrap">

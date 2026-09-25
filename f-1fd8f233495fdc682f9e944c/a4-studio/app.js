@@ -179,6 +179,26 @@
     $('review').scrollIntoView();
   }
 
+  async function copyPrompt() {
+    const role = selectedRole();
+    if (!role) throw new Error('请先选择角色');
+    const prompt = state.record?.prompt || buildPrompt(values(), role);
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch (_) {
+      const textarea = document.createElement('textarea');
+      textarea.value = prompt;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      if (!document.execCommand('copy')) throw new Error('复制失败，请长按提示词手动复制');
+      textarea.remove();
+    }
+    message('提示词已复制。请在 iPad ChatGPT 中粘贴并生图，保存图片后回到这里选择成图。');
+  }
+
   async function review() {
     if (!state.record?.work_id) throw new Error('请先保存作品记录');
     const reviewKeep = $('review-keep').value.trim();
@@ -284,6 +304,7 @@
     }));
     $('base-print-btn').addEventListener('click', () => guarded(printBase));
     $('refresh-btn').addEventListener('click', () => guarded(refreshWork));
+    $('copy-prompt-btn').addEventListener('click', () => guarded(copyPrompt));
     $('image-input').addEventListener('change', event => guarded(() => uploadImage(event.target.files[0])));
     $('review-btn').addEventListener('click', () => guarded(review));
     $('overlay-btn').addEventListener('click', () => guarded(prepareOverlay));
