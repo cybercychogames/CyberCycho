@@ -6,16 +6,16 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
   <meta name="description" content="iPad 通过 Tailscale 向 Mac mini 发送共同创作任务的链路实验。">
-  <title>Tailnet 报文实验台</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Flare 生图实验台</title>
+  <link rel="stylesheet" href="styles.css?v=flare-1">
 </head>
 <body>
   <main>
     <header>
       <p class="eyebrow">科技节 · 探索实例 02</p>
-      <h1>iPad 发报文，Mac mini 处理</h1>
+      <h1>iPad 描述，Flare 作画</h1>
       <p class="lead">页面来自 CyberCycho 公网；任务与回执只在你的 Tailscale 私网中传输。</p>
-      <div class="status checking" id="status"><i></i><span>正在寻找 Mac mini…</span></div>
+      <div class="status checking" id="status"><i></i><span>点击连接 Mac mini 开始</span></div>
     </header>
 
     <section class="route" aria-label="消息路线">
@@ -31,7 +31,7 @@
     <section class="panel">
       <div class="section-head">
         <div><span>STEP 01</span><h2>连接私网处理器</h2></div>
-        <button class="secondary" id="connect-btn">重新连接</button>
+        <button class="secondary" id="connect-btn">连接 Mac mini</button>
       </div>
       <label>Mac mini 私网地址
         <input id="backend" type="url" value="https://huangchengs-mac-mini.tailecea0a.ts.net:8776" spellcheck="false" autocapitalize="off">
@@ -41,32 +41,29 @@
     </section>
 
     <section class="panel">
-      <div class="section-head"><div><span>STEP 02</span><h2>发送一条测试报文</h2></div></div>
-      <label>报文内容
-        <textarea id="message" maxlength="500">请确认共同创作操作台在线，并回报百炼和打印机状态。</textarea>
+      <div class="section-head"><div><span>STEP 02</span><h2>描述你要的画面</h2></div></div>
+      <label>画面描述
+        <textarea id="message" maxlength="4000">像素风插画：一只橙色小龙在星空下的草地上捧着发光星星，黄色肚皮，尾巴保留红色火焰。方形构图，角色完整居中，四周留白，不要文字和水印。</textarea>
       </label>
-      <button class="primary" id="send-btn" disabled>发送给 Mac mini</button>
-      <p class="hint">本实验只验证收发，不生成图片，也不会提交打印。</p>
+      <button class="primary" id="send-btn" disabled>用 Flare 生成一张</button>
+      <p class="hint">GPT Image 2.5 Flare · 1024×1024 · 标准画质 · 每次一张。生成完成后先看预览。</p>
     </section>
 
     <section class="panel receipt-panel">
-      <div class="section-head"><div><span>STEP 03</span><h2>查看处理回执</h2></div></div>
-      <div class="empty" id="empty">等待第一条报文</div>
-      <dl id="receipt" hidden>
-        <div><dt>报文编号</dt><dd id="receipt-id"></dd></div>
-        <div><dt>处理时间</dt><dd id="receipt-time"></dd></div>
-        <div><dt>Mac 回复</dt><dd id="receipt-reply"></dd></div>
-        <div><dt>百炼</dt><dd id="receipt-ai"></dd></div>
-        <div><dt>打印机</dt><dd id="receipt-printer"></dd></div>
-        <div><dt>安全结果</dt><dd>未生图 · 未打印</dd></div>
-      </dl>
+      <div class="section-head"><div><span>STEP 03</span><h2>查看生成结果</h2></div></div>
+      <p id="job-status" role="status" aria-live="polite">等待提交任务</p>
+      <p class="hint" id="job-id"></p>
+      <img id="result-image" alt="Flare 生成结果" hidden>
+      <a id="download-image" class="private-link" target="_blank" rel="noopener" hidden>打开原图 / 保存到 iPad</a>
+      <button id="refresh-job" class="secondary" hidden>查询任务进度</button>
+      <p class="hint">本页只生成图片。确认预览后，再进入共同创作操作台处理打印。</p>
     </section>
 
     <aside>
       <strong>这个实例验证什么？</strong>
-      <p>它验证“公网网页 + Tailscale 私网执行器”可以连通。正式流程可以在同一通道里继续发送保存作品、生图、生成预览等任务；打印仍保留单独确认。</p>
+      <p>Mac mini 接收任务，调用 OpenAI Flare，保存图片并把结果返回 iPad。需要 Mac 配置 OpenAI API 凭据，图片由 OpenAI 云端生成。</p>
     </aside>
   </main>
-  <script src="app.js"></script>
+  <script src="app.js?v=flare-1"></script>
 </body>
 </html>
