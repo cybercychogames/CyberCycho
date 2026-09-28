@@ -6,7 +6,7 @@
   const endpoint = () => $('backend').value.trim().replace(/\/+$/, '');
   const storageKey = () => `a4-role-task:${endpoint()}`;
   const role = () => state.roles.find(item => item.id === $('role-id').value);
-  const providerName = provider => provider === 'codex' ? 'Codex' : '百炼';
+  const providerName = provider => ({codex:'Codex',bailian:'百炼'}[provider] || '未记录');
   function saveJob(job) {
     try { localStorage.setItem(storageKey(), JSON.stringify(job)); } catch (_) {}
   }
@@ -73,7 +73,7 @@
     saveJob(job);
     window.dispatchEvent(new CustomEvent('a4-job', {detail:{job, origin:endpoint()}}));
     state.busy = job.status === 'generating';
-    $('job-id').textContent = `任务 ${job.id} · 首选 ${providerName(job.preferred_provider)} · 当前 ${providerName(job.provider)}${job.fallback_used ? '（已接替）' : ''}`;
+    $('job-id').textContent = `任务 ${job.id} · 首选 ${providerName(job.preferred_provider)} · 当前 ${job.provider_label || providerName(job.provider)}${job.fallback_used ? '（已接替）' : ''}`;
     $('job-role').hidden = !job.role_id;
     $('job-role').textContent = job.role_id ? `本次作品使用 ${job.role_id} 号 · ${job.role_name || ''} 的参考图，请核对同编号的底纸。` : '';
     $('job-status').textContent = ({generating:`${job.fallback_used ? (job.fallback_reason || '首选服务未完成') + '，已切换到' : ''}${providerName(job.phase || job.provider)}正在根据角色参考图作画…`, completed:`图片由${providerName(job.provider)}完成，用时 ${job.seconds} 秒。${job.fallback_used ? '首选服务未完成，备用服务已接替。' : ''}请核对角色和变化。`,failed:job.error || '本次生成失败，请确认后手动重试。', interrupted:job.error})[job.status] || '等待确认任务状态';
@@ -91,7 +91,11 @@
   }
   async function refresh() {
     if (!state.job) return;
-    try { showJob((await request(`/api/image/jobs/${state.job.id}`)).job); }
+    try {
+      const archived = Boolean(state.job.archived);
+      const data = await request(archived ? `/api/gallery/${state.job.id}` : `/api/image/jobs/${state.job.id}`);
+      showJob({...data.job, archived});
+    }
     catch(error) {
       if (error.httpStatus === 404) {
         state.busy = false;
@@ -109,11 +113,13 @@
       if(data.mode !== 'tailnet-relay' || !data.generation?.requires_role) throw new Error('服务尚未更新，请稍后重试');
       state.ready = Boolean(data.generation.configured);
       state.providers = data.generation.providers || {};
+      window.dispatchEvent(new CustomEvent('a4-connection', {detail:{connected:true, origin:endpoint()}}));
       const lastCodex = data.generation.last_attempts?.codex;
       if (lastCodex?.error_code === 'moderation_blocked') $('provider-hint').textContent = 'Codex 最近一次实测被服务端审核拦截，原因未披露。建议先用百炼；普通调用失败可由另一家接替，审核拦截不自动切换。';
       status(state.ready ? 'online' : 'error', state.ready ? `Mac mini 已连接 · 百炼${state.providers.bailian ? '已登录' : '未登录'} · Codex${state.providers.codex ? '已登录' : '未登录'}` : 'Mac mini 已连接 · 请检查百炼和 Codex 登录状态');
       let saved = null;
       try { saved = JSON.parse(localStorage.getItem(storageKey()) || 'null'); } catch (_) {}
+      if (data.generation.active_job) saved = {id:data.generation.active_job, status:'generating'};
       if (saved) {
         state.job = saved;
         if (saved.role_id) selectRole(saved.role_id);
@@ -124,7 +130,7 @@
         $('refresh-job').hidden = false;
         await refresh();
       }
-    } catch(error) {status('error',`连接未完成：${error.message}。请开启 Tailscale，或在“连接设置”里打开私网备用页。`);}
+    } catch(error) {window.dispatchEvent(new CustomEvent('a4-connection',{detail:{connected:false,origin:endpoint()}}));status('error',`连接未完成：${error.message}。请开启 Tailscale，或在“连接设置”里打开私网备用页。`);}
     finally {state.connecting = false; updateControls();}
   }
   async function send() {
@@ -147,9 +153,21 @@
     }
   }
   if(isPrivate) { $('backend').value=location.origin; $('private-link').hidden=true; }
+  window.addEventListener('a4-open-archive', event => {
+    if (state.busy || state.connecting) return;
+    const {job, origin} = event.detail;
+    if (origin !== endpoint()) return;
+    selectRole(job.role_id || '');
+    $('preferred-provider').value = job.preferred_provider || 'bailian';
+    $('message').value = job.prompt || '';
+    $('work-title').value = job.title || ''; $('work-caption').value = job.caption || '';
+    showJob({...job, archived:true});
+    $('art-dialog').close();
+    $('result-panel').scrollIntoView({behavior:'smooth',block:'start'});
+  });
   $('role-id').addEventListener('change', () => selectRole($('role-id').value));
   $('message').addEventListener('input', updateControls);
-  $('backend').addEventListener('change',()=>{state.ready=false;state.job=null;window.dispatchEvent(new CustomEvent('a4-job',{detail:{job:null,origin:endpoint()}}));clearTimeout(state.timer);status('checking','地址已变化，请连接 Mac mini');});
+  $('backend').addEventListener('change',()=>{state.ready=false;state.job=null;window.dispatchEvent(new CustomEvent('a4-connection',{detail:{connected:false,origin:endpoint()}}));window.dispatchEvent(new CustomEvent('a4-job',{detail:{job:null,origin:endpoint()}}));clearTimeout(state.timer);status('checking','地址已变化，请连接 Mac mini');});
   $('connect-btn').addEventListener('click',connect);
   $('send-btn').addEventListener('click',send);
   $('refresh-job').addEventListener('click',refresh);

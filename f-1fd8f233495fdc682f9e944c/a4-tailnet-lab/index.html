@@ -7,7 +7,7 @@
   <meta name="referrer" content="no-referrer">
   <meta name="description" content="选择 01–40 号角色参考图，写下变化要求，选择百炼或 Codex 创作并打印。">
   <title>角色变身创作台</title>
-  <link rel="stylesheet" href="styles.css?v=roles-3">
+  <link rel="stylesheet" href="styles.css?v=gallery-1">
 </head>
 <body>
   <main>
@@ -16,6 +16,7 @@
       <h1>选一个角色，画新的冒险</h1>
       <p class="lead">从 01–40 号底纸角色中选一个，AI 会看着这张参考图，根据你的想法改变动作、颜色或场景。</p>
       <div class="status checking" id="status"><i></i><span>点击连接 Mac mini 开始</span></div>
+      <nav><a class="private-link" href="#gallery">查看本地作品图库 ↓</a></nav>
     </header>
 
     <section class="route" aria-label="创作流程">
@@ -68,7 +69,7 @@
       <p class="hint">每次生成一张 · 百炼使用现有账户，Codex 使用订阅额度 · 审核拦截会显示原因，不自动切换服务。</p>
     </section>
 
-    <section class="panel receipt-panel">
+    <section class="panel receipt-panel" id="result-panel">
       <div class="section-head"><div><span>STEP 03</span><h2>核对二次补印预览</h2></div></div>
       <p id="job-status" role="status" aria-live="polite">等待提交任务</p>
       <p class="hint" id="job-id"></p>
@@ -104,12 +105,37 @@
       <form method="dialog"><button class="primary">返回操作台</button></form>
     </dialog>
 
+    <section class="panel" id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head"><div><span>OUR COLLECTION</span><h2 id="gallery-title">本地作品图库</h2></div>
+        <button class="secondary" id="gallery-refresh" disabled>刷新图库</button></div>
+      <p class="hint">每张完成的作品都会保存在 Mac mini：原图、角色参考图、变化要求、生图记录和补印 PDF。按日期回顾，也可以再次打印。</p>
+      <label class="changes-label" for="gallery-date">查看哪一天的作品？</label>
+      <select id="gallery-date" disabled><option value="today">今天</option><option value="all">全部日期</option></select>
+      <p class="hint" id="gallery-status" role="status" aria-live="polite">连接 Mac mini 后，即可查看已保存的作品。</p>
+      <div id="gallery-grid" class="art-grid"></div>
+      <button class="secondary" id="gallery-more" hidden>加载更多</button>
+    </section>
+
+    <dialog id="art-dialog" aria-labelledby="art-title">
+      <div class="section-head"><h2 id="art-title">作品详情</h2><form method="dialog"><button class="secondary" aria-label="关闭作品详情">关闭</button></form></div>
+      <img id="art-image" class="art-full" alt="已保存的作品">
+      <p id="art-meta" class="hint"></p>
+      <div id="art-reference-wrap" class="art-reference" hidden><img id="art-reference" alt="当次生成使用的角色参考图"><p id="art-role"></p></div>
+      <h3>当时的变化要求</h3><p id="art-prompt" class="saved-text"></p>
+      <p id="art-caption" class="hint"></p>
+      <details><summary>完整生图描述与过程</summary><p id="art-generation-prompt" class="saved-text"></p><p id="art-attempts" class="saved-text hint"></p></details>
+      <div class="print-links"><a id="art-download" class="private-link" target="_blank" rel="noopener">打开原图 / 保存</a><a id="art-pdf" class="private-link" target="_blank" rel="noopener" hidden>打开补印 PDF</a><a id="art-metadata" class="private-link" target="_blank" rel="noopener">查看保存记录</a></div>
+      <button id="art-open" class="primary">载入作品，准备补印</button>
+      <p class="hint" id="art-open-hint">载入后仍需核对底纸，再确认打印。</p>
+    </dialog>
+
     <aside>
       <strong>这次 AI 看到了什么？</strong>
       <p>百炼和 Codex 都会看到所选编号的原始角色参考图和你的变化要求。它没有读取孩子在纸上的手绘；如果改过颜色或细节，请写进变化要求。生成后对照角色核对，图片统一标注“AI生成”。</p>
     </aside>
   </main>
   <script src="print.js?v=roles-3"></script>
-  <script src="app.js?v=roles-3"></script>
+  <script src="gallery.js?v=gallery-1"></script>
+  <script src="app.js?v=gallery-1"></script>
 </body>
 </html>
