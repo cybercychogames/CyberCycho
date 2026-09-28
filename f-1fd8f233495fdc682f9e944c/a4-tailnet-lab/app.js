@@ -22,6 +22,7 @@
   }
   function showJob(job) {
     state.job = job;
+    window.dispatchEvent(new CustomEvent('a4-job', {detail:{job, origin:endpoint()}}));
     state.busy = job.status === 'generating';
     $('job-id').textContent = `任务 ${job.id} · ${job.model || 'Codex 内置生图（订阅）'}`;
     $('job-status').textContent = ({generating:job.phase === 'bailian' ? 'Codex 未完成，已自动切换百炼，正在作画…' : 'Codex 正在作画；失败后将自动切换百炼。', completed:`图片已完成，用时 ${job.seconds} 秒。${job.fallback_used ? 'Codex 未完成，本次由百炼生成。' : '本次由 Codex 生成。'}`,failed:job.fallback_used ? `Codex 与百炼均未完成。${job.error}` : job.error, interrupted:job.error})[job.status] || '等待确认任务状态';
@@ -29,7 +30,8 @@
     $('result-image').hidden = !job.image_url;
     $('download-image').hidden = !job.image_url;
     if (job.image_url) {
-      $('result-image').src = endpoint()+job.image_url;
+      $('result-image').src = endpoint()+(job.print_preview_url || job.image_url);
+      $('result-image').alt = job.print_preview_url ? '完整 A4 二次补印预览：左侧空白，右侧生成图' : '生成结果';
       $('download-image').href = endpoint()+job.image_url;
     }
     $('send-btn').disabled = !state.ready || state.busy;
@@ -62,7 +64,7 @@
     localStorage.setItem(storageKey(),JSON.stringify(job));
     showJob(job);
     try {
-      const data = await request('/api/codex/jobs',{method:'POST',body:JSON.stringify({request_id:job.id,prompt})});
+      const data = await request('/api/codex/jobs',{method:'POST',body:JSON.stringify({request_id:job.id,prompt,title:$('work-title').value.trim(),caption:$('work-caption').value.trim()})});
       showJob(data.job);
     } catch(e) {
       clearTimeout(state.timer);
@@ -78,7 +80,7 @@
     document.querySelector('.lead').textContent='通过 Tailscale 连接 Mac mini，发送画面描述并查看 Codex 结果。';
     $('private-link').hidden=true;
   }
-  $('backend').addEventListener('change',()=>{state.ready=false;state.job=null;clearTimeout(state.timer);status('checking','地址已变化，请连接 Mac mini');});
+  $('backend').addEventListener('change',()=>{state.ready=false;state.job=null;window.dispatchEvent(new CustomEvent('a4-job',{detail:{job:null,origin:endpoint()}}));clearTimeout(state.timer);status('checking','地址已变化，请连接 Mac mini');});
   $('connect-btn').addEventListener('click',connect);
   $('send-btn').addEventListener('click',send);
   $('refresh-job').addEventListener('click',refresh);

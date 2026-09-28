@@ -7,7 +7,7 @@
   <meta name="referrer" content="no-referrer">
   <meta name="description" content="iPad 通过 Tailscale 向 Mac mini 发送共同创作任务的链路实验。">
   <title>Codex 生图实验台</title>
-  <link rel="stylesheet" href="styles.css?v=fallback-1">
+  <link rel="stylesheet" href="styles.css?v=print-1">
 </head>
 <body>
   <main>
@@ -45,25 +45,55 @@
       <label>画面描述
         <textarea id="message" maxlength="4000">像素风插画：一只橙色小龙在星空下的草地上捧着发光星星，黄色肚皮，尾巴保留红色火焰。方形构图，角色完整居中，四周留白，不要文字和水印。</textarea>
       </label>
+      <details class="paper-copy"><summary>印在纸上的文字（选填）</summary>
+        <label>作品名字<input id="work-title" maxlength="24" placeholder="默认：我的冒险"></label>
+        <label>作品的一句话<input id="work-caption" maxlength="64" placeholder="只用于排版，不作为额外生图描述"></label>
+      </details>
       <button class="primary" id="send-btn" disabled>生成一张</button>
       <p class="hint">Codex 优先，失败自动切换百炼 · 每次一张 · 图片仅标注“AI生成”。Codex 消耗订阅额度，百炼按现有账户计费。</p>
     </section>
 
     <section class="panel receipt-panel">
-      <div class="section-head"><div><span>STEP 03</span><h2>查看生成结果</h2></div></div>
+      <div class="section-head"><div><span>STEP 03</span><h2>核对二次补印预览</h2></div></div>
       <p id="job-status" role="status" aria-live="polite">等待提交任务</p>
       <p class="hint" id="job-id"></p>
       <img id="result-image" alt="Codex 生成结果" hidden>
       <a id="download-image" class="private-link" target="_blank" rel="noopener" hidden>打开原图 / 保存到 iPad</a>
       <button id="refresh-job" class="secondary" hidden>查询任务进度</button>
-      <p class="hint">本页只生成图片。确认预览后，再进入共同创作操作台处理打印。</p>
+      <p class="hint">完整 A4 横向 · 左半边空白 · 只补印右侧 · 保持原方向。请核对这张图与手里的角色底纸。</p>
     </section>
+
+    <section class="panel" id="print-panel">
+      <div class="section-head"><div><span>STEP 04</span><h2>同一张纸，第二次打印</h2></div>
+        <button class="secondary" id="connect-printer">连接打印机</button></div>
+      <p class="hint">目标：你身边的 EPSON L3250。连接和最终打印确认在 iPad 的 Epson Smart Panel 中完成。</p>
+      <p id="print-status" role="status" aria-live="polite">生成完成后，自动准备 A4 右侧补印文件。</p>
+      <label class="check-line"><input type="checkbox" id="confirm-paper">已核对画面与底纸，并按右上角箭头放回同一张纸</label>
+      <button class="primary" id="print-second" disabled>二次打印</button>
+      <div class="print-links"><a class="private-link" id="open-print-pdf" target="_blank" rel="noopener" hidden>打开 / 保存 A4 补印 PDF</a>
+        <button class="secondary" id="retry-print-file" hidden>重新下载补印文件</button></div>
+      <p class="hint">点击后选择 Epson Smart Panel；若分享菜单没有它，先“存储到文件”，再在 App 的“打印文档”中打开。选择 A4、横向、单面、1 份；保持原尺寸，关闭裁切和无边距放大。首次 iPad 补印仍需实物确认位置。</p>
+    </section>
+
+    <dialog id="printer-dialog" aria-labelledby="printer-dialog-title">
+      <h2 id="printer-dialog-title">连接 EPSON L3250</h2>
+      <ol>
+        <li>在 iPad 上打开 <strong>Epson Smart Panel</strong>，允许“本地网络”访问。</li>
+        <li>让 iPad 与打印机连接同一 Wi-Fi，或在 iPad 设置中连接打印机的 Wi-Fi Direct。</li>
+        <li>在 App 中添加／选择这台打印机，再回到本页点“二次打印”。</li>
+      </ol>
+      <p class="hint">连接状态以 Epson App 为准，网页无法检测。切换网络前，请先等本页显示“补印 PDF 已下载”，并保持页面打开。</p>
+      <a class="private-link" href="https://apps.apple.com/cn/app/epson-smart-panel/id1477796092" target="_blank" rel="noopener">打开 Epson Smart Panel 的 App Store 页面</a><br>
+      <a class="private-link" href="https://www.epson.com.cn/faq/965ebeeb40bd44aeb0ce9dd80e8887b3.html?productId=03f00e0df281466ea6390a9e8465e28c" target="_blank" rel="noopener">查看官方 Wi-Fi Direct 连接步骤</a>
+      <form method="dialog"><button class="primary">返回操作台</button></form>
+    </dialog>
 
     <aside>
       <strong>这个实例验证什么？</strong>
       <p>Mac mini 接收任务，优先使用 Codex CLI 订阅生图；失败后以同一描述调用百炼一次。实际引擎显示在返回文字中，图片统一添加“AI生成”水印。</p>
     </aside>
   </main>
-  <script src="app.js?v=fallback-1"></script>
+  <script src="print.js?v=print-1"></script>
+  <script src="app.js?v=print-1"></script>
 </body>
 </html>
