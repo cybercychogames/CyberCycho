@@ -5,59 +5,75 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta name="description" content="iPad 通过 Tailscale 向 Mac mini 发送共同创作任务的链路实验。">
-  <title>Codex 生图实验台</title>
-  <link rel="stylesheet" href="styles.css?v=print-1">
+  <meta name="description" content="选择 01–40 号角色参考图，写下变化要求，选择百炼或 Codex 创作并打印。">
+  <title>角色变身创作台</title>
+  <link rel="stylesheet" href="styles.css?v=roles-3">
 </head>
 <body>
   <main>
     <header>
       <p class="eyebrow">科技节 · 探索实例 02</p>
-      <h1>iPad 描述，Codex 作画</h1>
-      <p class="lead">页面来自 CyberCycho 公网；任务与回执只在你的 Tailscale 私网中传输。</p>
+      <h1>选一个角色，画新的冒险</h1>
+      <p class="lead">从 01–40 号底纸角色中选一个，AI 会看着这张参考图，根据你的想法改变动作、颜色或场景。</p>
       <div class="status checking" id="status"><i></i><span>点击连接 Mac mini 开始</span></div>
     </header>
 
-    <section class="route" aria-label="消息路线">
-      <article><b>1</b><strong>iPad</strong><span>打开公网操作页</span></article>
+    <section class="route" aria-label="创作流程">
+      <article><b>1</b><strong>选角色</strong><span>01–40 号参考图</span></article>
       <i>→</i>
-      <article><b>2</b><strong>Tailscale</strong><span>私网 HTTPS 报文</span></article>
+      <article><b>2</b><strong>写变化</strong><span>颜色、动作和场景</span></article>
       <i>→</i>
-      <article><b>3</b><strong>Mac mini</strong><span>监听、记录、处理</span></article>
+      <article><b>3</b><strong>AI 作画</strong><span>携带所选角色图片</span></article>
       <i>→</i>
-      <article><b>4</b><strong>本页显示</strong><span>回执返回 iPad</span></article>
+      <article><b>4</b><strong>核对补印</strong><span>同一张 A4 的右侧</span></article>
     </section>
 
     <section class="panel">
       <div class="section-head">
-        <div><span>STEP 01</span><h2>连接私网处理器</h2></div>
+        <div><span>STEP 01</span><h2>连接创作服务</h2></div>
         <button class="secondary" id="connect-btn">连接 Mac mini</button>
       </div>
+      <details class="connection-settings"><summary>连接设置</summary>
       <label>Mac mini 私网地址
         <input id="backend" type="url" value="https://huangchengs-mac-mini.tailecea0a.ts.net:8776" spellcheck="false" autocapitalize="off">
       </label>
       <p class="hint">iPad 需要先打开 Tailscale。这个地址只对同一 Tailnet 内的设备有效。</p>
       <a class="private-link" id="private-link" href="https://huangchengs-mac-mini.tailecea0a.ts.net:8776/">如果浏览器阻止公网跨私网请求，打开私网备用页</a>
+      </details>
     </section>
 
     <section class="panel">
-      <div class="section-head"><div><span>STEP 02</span><h2>描述你要的画面</h2></div></div>
-      <label>画面描述
-        <textarea id="message" maxlength="4000">像素风插画：一只橙色小龙在星空下的草地上捧着发光星星，黄色肚皮，尾巴保留红色火焰。方形构图，角色完整居中，四周留白，不要文字和水印。</textarea>
-      </label>
+      <div class="section-head"><div><span>STEP 02</span><h2>选角色，再写变化</h2></div></div>
+      <label for="role-id">底纸上的角色编号（必选）</label>
+      <select id="role-id" required disabled><option value="">正在载入 40 个角色…</option></select>
+      <details class="role-gallery"><summary>展开全部 40 个角色，看图选择</summary><div id="role-grid" class="role-grid"></div></details>
+      <div class="role-preview" id="role-preview" hidden>
+        <img id="role-image" alt="所选角色参考图" width="160" height="160">
+        <div><strong id="role-name"></strong><p id="role-feature"></p><p class="hint">这张原始角色图会随每一次请求交给所选生图服务。请与手中的底纸编号对应。</p></div>
+      </div>
+      <p class="hint" id="role-hint" role="status">先选择一个角色，才能生成。</p>
+      <label class="changes-label" for="message">这个角色要发生什么变化？</label>
+      <textarea id="message" maxlength="4000" placeholder="例如：穿上蓝色披风，在月球上种一棵树。保留原来的脸和尾巴。"></textarea>
       <details class="paper-copy"><summary>印在纸上的文字（选填）</summary>
         <label>作品名字<input id="work-title" maxlength="24" placeholder="默认：我的冒险"></label>
         <label>作品的一句话<input id="work-caption" maxlength="64" placeholder="只用于排版，不作为额外生图描述"></label>
       </details>
-      <button class="primary" id="send-btn" disabled>生成一张</button>
-      <p class="hint">Codex 优先，失败自动切换百炼 · 每次一张 · 图片仅标注“AI生成”。Codex 消耗订阅额度，百炼按现有账户计费。</p>
+      <label class="changes-label" for="preferred-provider">从哪一家开始？</label>
+      <select id="preferred-provider">
+        <option value="bailian" selected>百炼优先（默认）→ Codex 接替</option>
+        <option value="codex">Codex 优先 → 百炼接替</option>
+      </select>
+      <p class="hint" id="provider-hint">首选服务超时、额度不足或调用失败时，自动换另一家一次；始终使用同一张角色参考图。</p>
+      <button class="primary" id="send-btn" disabled>用所选角色生成一张</button>
+      <p class="hint">每次生成一张 · 百炼使用现有账户，Codex 使用订阅额度 · 审核拦截会显示原因，不自动切换服务。</p>
     </section>
 
     <section class="panel receipt-panel">
       <div class="section-head"><div><span>STEP 03</span><h2>核对二次补印预览</h2></div></div>
       <p id="job-status" role="status" aria-live="polite">等待提交任务</p>
       <p class="hint" id="job-id"></p>
-      <img id="result-image" alt="Codex 生成结果" hidden>
+      <p class="job-role" id="job-role" hidden></p>
+      <img id="result-image" alt="基于角色参考图生成的结果" hidden>
       <a id="download-image" class="private-link" target="_blank" rel="noopener" hidden>打开原图 / 保存到 iPad</a>
       <button id="refresh-job" class="secondary" hidden>查询任务进度</button>
       <p class="hint">完整 A4 横向 · 左半边空白 · 只补印右侧 · 保持原方向。请核对这张图与手里的角色底纸。</p>
@@ -66,7 +82,7 @@
     <section class="panel" id="print-panel">
       <div class="section-head"><div><span>STEP 04</span><h2>同一张纸，第二次打印</h2></div>
         <button class="secondary" id="connect-printer">连接打印机</button></div>
-      <p class="hint">目标：你身边的 EPSON L3250。连接和最终打印确认在 iPad 的 Epson Smart Panel 中完成。</p>
+      <p class="hint">目标：你身边的 EPSON L3256。连接和最终打印确认在 iPad 的 Epson Smart Panel 中完成。</p>
       <p id="print-status" role="status" aria-live="polite">生成完成后，自动准备 A4 右侧补印文件。</p>
       <label class="check-line"><input type="checkbox" id="confirm-paper">已核对画面与底纸，并按右上角箭头放回同一张纸</label>
       <button class="primary" id="print-second" disabled>二次打印</button>
@@ -76,7 +92,7 @@
     </section>
 
     <dialog id="printer-dialog" aria-labelledby="printer-dialog-title">
-      <h2 id="printer-dialog-title">连接 EPSON L3250</h2>
+      <h2 id="printer-dialog-title">连接 EPSON L3256</h2>
       <ol>
         <li>在 iPad 上打开 <strong>Epson Smart Panel</strong>，允许“本地网络”访问。</li>
         <li>让 iPad 与打印机连接同一 Wi-Fi，或在 iPad 设置中连接打印机的 Wi-Fi Direct。</li>
@@ -89,11 +105,11 @@
     </dialog>
 
     <aside>
-      <strong>这个实例验证什么？</strong>
-      <p>Mac mini 接收任务，优先使用 Codex CLI 订阅生图；失败后以同一描述调用百炼一次。实际引擎显示在返回文字中，图片统一添加“AI生成”水印。</p>
+      <strong>这次 AI 看到了什么？</strong>
+      <p>百炼和 Codex 都会看到所选编号的原始角色参考图和你的变化要求。它没有读取孩子在纸上的手绘；如果改过颜色或细节，请写进变化要求。生成后对照角色核对，图片统一标注“AI生成”。</p>
     </aside>
   </main>
-  <script src="print.js?v=print-1"></script>
-  <script src="app.js?v=print-1"></script>
+  <script src="print.js?v=roles-3"></script>
+  <script src="app.js?v=roles-3"></script>
 </body>
 </html>

@@ -1,0 +1,322 @@
+[
+  {
+    "id": "01",
+    "name": "皮卡丘",
+    "source": "宝可梦",
+    "feature": "尖耳朵 · 闪电尾巴",
+    "image": "roles/01.png",
+    "sha256": "7a4d2a51616f9ac9a381aab0cbbf275dbb43f64648d6af7a1b5768ca53729e92"
+  },
+  {
+    "id": "02",
+    "name": "伊布",
+    "source": "宝可梦",
+    "feature": "长耳朵 · 蓬松围领",
+    "image": "roles/02.png",
+    "sha256": "3d9162855bfa9c36b9c02fc0657fe9332f9c73182447c6e8f7a176df8fe219d0"
+  },
+  {
+    "id": "03",
+    "name": "杰尼龟",
+    "source": "宝可梦",
+    "feature": "圆脑袋 · 龟壳",
+    "image": "roles/03.png",
+    "sha256": "e5df91bb8967040bed690c40d71e11fe702af1a506735a774a23d16d8f22bf91"
+  },
+  {
+    "id": "04",
+    "name": "小火龙",
+    "source": "宝可梦",
+    "feature": "橙色身体 · 火焰尾巴",
+    "image": "roles/04.png",
+    "sha256": "f34f1210c9f0a0d6c6598664b1164da51c2a62b8ceeaa29861a4b350b425e783"
+  },
+  {
+    "id": "05",
+    "name": "马力欧",
+    "source": "任天堂",
+    "feature": "红帽子 · 蓝背带裤",
+    "image": "roles/05.png",
+    "sha256": "6e97886cd9bd8b6c0feaceff1872955898900434045b2ce3a99bab68b401918e"
+  },
+  {
+    "id": "06",
+    "name": "林克",
+    "source": "任天堂",
+    "feature": "绿帽子 · 盾牌",
+    "image": "roles/06.png",
+    "sha256": "839c5c152a7cf5f22b9652d89ca1f50e3e5d9cce483902a5dcee2347ec8164e9"
+  },
+  {
+    "id": "07",
+    "name": "卡比",
+    "source": "任天堂",
+    "feature": "圆身体 · 红脚掌",
+    "image": "roles/07.png",
+    "sha256": "97cb28a42e1df1ebb80021e5e6b5195d53fb3b9c3ab45fc8d93de257a4166c26"
+  },
+  {
+    "id": "08",
+    "name": "耀西",
+    "source": "任天堂",
+    "feature": "绿脑袋 · 大鼻子",
+    "image": "roles/08.png",
+    "sha256": "bb2f36e70fa16dd0e28405dad25ae85cd8189c44591c951078ceb57f08ab901a"
+  },
+  {
+    "id": "09",
+    "name": "洛克人",
+    "source": "经典像素游戏",
+    "feature": "蓝头盔 · 手臂炮",
+    "image": "roles/09.png",
+    "sha256": "c3634cd60a909d7e04e51c8bb9ed79305c9255cb25adb2aa19b71c595237bd44"
+  },
+  {
+    "id": "10",
+    "name": "吃豆人",
+    "source": "经典像素游戏",
+    "feature": "圆轮廓 · 大嘴巴",
+    "image": "roles/10.png",
+    "sha256": "b4ab8a9a1808fc1ba20c68a052f077abac2280eb3d39c0992ab04377abb44188"
+  },
+  {
+    "id": "11",
+    "name": "妙蛙种子",
+    "source": "宝可梦",
+    "feature": "背上种子 · 四只短脚",
+    "image": "roles/11.png",
+    "sha256": "ca7d7eec7cea030f844bda26e652e009fcb434e89309aa326b1ebdc369ecd521"
+  },
+  {
+    "id": "12",
+    "name": "可达鸭",
+    "source": "宝可梦",
+    "feature": "头顶呆毛 · 扁嘴巴",
+    "image": "roles/12.png",
+    "sha256": "72fe0cd6aec907c84e525859d2c09ef9369cdf424b8d9817e3c7de7397a9cfc3"
+  },
+  {
+    "id": "13",
+    "name": "喵喵",
+    "source": "宝可梦",
+    "feature": "金币额头 · 卷尾巴",
+    "image": "roles/13.png",
+    "sha256": "3f95bd07a3f322af56ab7210492490cb4ad0e41deb4e8d69960f7970d83dded3"
+  },
+  {
+    "id": "14",
+    "name": "胖丁",
+    "source": "宝可梦",
+    "feature": "尖耳朵 · 额头卷毛",
+    "image": "roles/14.png",
+    "sha256": "8f5c90e06093b68a792e522e88d155272df6e2172a8b8bb552f4fab367e1d299"
+  },
+  {
+    "id": "15",
+    "name": "耿鬼",
+    "source": "宝可梦",
+    "feature": "锯齿轮廓 · 大笑脸",
+    "image": "roles/15.png",
+    "sha256": "0886eb197d24670e66ab27c496986b3a10780c6ff98e63dcfa8720fc4fefc5f7"
+  },
+  {
+    "id": "16",
+    "name": "卡比兽",
+    "source": "宝可梦",
+    "feature": "尖耳朵 · 大肚皮",
+    "image": "roles/16.png",
+    "sha256": "c3fbdee61380dacf79c7d71b1ea212f36925bf6340ca4a2802835e518fc3d4e8"
+  },
+  {
+    "id": "17",
+    "name": "皮皮",
+    "source": "宝可梦",
+    "feature": "卷尾巴 · 小翅膀",
+    "image": "roles/17.png",
+    "sha256": "3bfe4011710a0d5fc85290f470ae7decb502754d8344bba3b8cf14580e30876b"
+  },
+  {
+    "id": "18",
+    "name": "鲤鱼王",
+    "source": "宝可梦",
+    "feature": "大嘴巴 · 扇形鱼尾",
+    "image": "roles/18.png",
+    "sha256": "fd297edc54e2a8ededa4a2af05ca4fdf7f8fb28302ce812d4cc10138c824d60a"
+  },
+  {
+    "id": "19",
+    "name": "呆呆兽",
+    "source": "宝可梦",
+    "feature": "长尾巴 · 大嘴巴",
+    "image": "roles/19.png",
+    "sha256": "a015e2986dc9fccece5aa5dcbd7a927a5638db06edb2ceeed5a894eef4416935"
+  },
+  {
+    "id": "20",
+    "name": "走路草",
+    "source": "宝可梦",
+    "feature": "五片叶子 · 小脚",
+    "image": "roles/20.png",
+    "sha256": "76ab7849aca2417f70298692499c9ed1124beed2158dde860b71ec392cca37d4"
+  },
+  {
+    "id": "21",
+    "name": "奇诺比奥",
+    "source": "任天堂",
+    "feature": "蘑菇帽 · 蓝背心",
+    "image": "roles/21.png",
+    "sha256": "c7633cd9d3af9b39b53212bdd4e5e48a2443c6fcffbf779becd9bdb9a0f62f18"
+  },
+  {
+    "id": "22",
+    "name": "库巴",
+    "source": "任天堂",
+    "feature": "龟壳 · 尖角",
+    "image": "roles/22.png",
+    "sha256": "a7838b43c8ade9ebb8f3de65605768c97a1b20a74d8b9716ec820412904a6695"
+  },
+  {
+    "id": "23",
+    "name": "大金刚",
+    "source": "任天堂",
+    "feature": "长手臂 · 红领带",
+    "image": "roles/23.png",
+    "sha256": "7736c295044338bd3605e31ba1c204152fec6f7c25a018227d02fda4c5134628"
+  },
+  {
+    "id": "24",
+    "name": "瓦力欧",
+    "source": "任天堂",
+    "feature": "黄帽子 · 锯齿胡子",
+    "image": "roles/24.png",
+    "sha256": "54a96ec78e2aece608a6e8ea1d24e2c96ea8b7359050eca3214b4e5744ae551f"
+  },
+  {
+    "id": "25",
+    "name": "碧姬公主",
+    "source": "任天堂",
+    "feature": "小皇冠 · 粉色长裙",
+    "image": "roles/25.png",
+    "sha256": "a0e36459d36a1e3b16ed0bff441e8f7dd22e3ac24a7815dfb668ab56f4537a9e"
+  },
+  {
+    "id": "26",
+    "name": "萨姆斯",
+    "source": "任天堂",
+    "feature": "橙色装甲 · 绿色手炮",
+    "image": "roles/26.png",
+    "sha256": "3c024fd78c8401fe563dc3d5d5e4fa32260d7d0cf15f299b112cb46970d4edd2"
+  },
+  {
+    "id": "27",
+    "name": "嘿呵",
+    "source": "任天堂",
+    "feature": "白面具 · 红袍子",
+    "image": "roles/27.png",
+    "sha256": "2486bae30a59f2ea278ddda96c0635a48e1993d4120e10a38c38d5495c5e84a7"
+  },
+  {
+    "id": "28",
+    "name": "酷栗宝",
+    "source": "任天堂",
+    "feature": "三角脑袋 · 小獠牙",
+    "image": "roles/28.png",
+    "sha256": "b2f5a55f45ec5a63116bb23b5cc4394d7a5df4228dce11ff9f6cdac953b424f9"
+  },
+  {
+    "id": "29",
+    "name": "害羞幽灵",
+    "source": "任天堂",
+    "feature": "白色飘浮身体 · 长舌头",
+    "image": "roles/29.png",
+    "sha256": "89fa79db27b9641b0ff1beb1ae6530ad6f28d515145abf25810fd7b6567e3190"
+  },
+  {
+    "id": "30",
+    "name": "皮克敏",
+    "source": "任天堂",
+    "feature": "头顶叶子 · 细长身体",
+    "image": "roles/30.png",
+    "sha256": "e5cfcbcd89da71a0f6fa7e1376331bcdbf1f07cb20522409dfe963e7113ed96e"
+  },
+  {
+    "id": "31",
+    "name": "索尼克",
+    "source": "经典游戏",
+    "feature": "蓝色尖刺 · 红鞋",
+    "image": "roles/31.png",
+    "sha256": "d2dd73b80b55d04e392250c3c811471ddab02046996bb38a5c6cf827e5616c6b"
+  },
+  {
+    "id": "32",
+    "name": "炸弹人",
+    "source": "经典游戏",
+    "feature": "白头盔 · 粉色手套",
+    "image": "roles/32.png",
+    "sha256": "fcb1d7989e4ba5d0749943934c210434df0578b1c9e07497fcce53375471db26"
+  },
+  {
+    "id": "33",
+    "name": "太空侵略者",
+    "source": "经典游戏",
+    "feature": "触角 · 对称机械足",
+    "image": "roles/33.png",
+    "sha256": "eb4f90d304770e78086d70583976d82d0259ff077ecd80f06b44e4ebfa463e85"
+  },
+  {
+    "id": "34",
+    "name": "过河青蛙",
+    "source": "经典游戏",
+    "feature": "大眼睛 · 张开的四肢",
+    "image": "roles/34.png",
+    "sha256": "9707c7fc0e0814d033abc47a9f0cff275634be3252e83e7517c41321ea340e81"
+  },
+  {
+    "id": "35",
+    "name": "巴布",
+    "source": "经典游戏",
+    "feature": "绿色小龙 · 背鳍",
+    "image": "roles/35.png",
+    "sha256": "f6cd7b85da0941078465e730c7a19bc67ce77b31996f0eb66dc9a7aa014192fe"
+  },
+  {
+    "id": "36",
+    "name": "雪人尼克",
+    "source": "经典游戏",
+    "feature": "白色身体 · 红围巾",
+    "image": "roles/36.png",
+    "sha256": "07bdc7b875b8e72c14e2bef3f1f3b74effa83ae882186b9e0745d7070e4a6c29"
+  },
+  {
+    "id": "37",
+    "name": "黑魔法师",
+    "source": "经典游戏",
+    "feature": "尖帽子 · 黄色眼睛",
+    "image": "roles/37.png",
+    "sha256": "6a719a0a1a306447aaf96b027bc1f69c2a2f7f333b0238e4f69938a8f5b1c172"
+  },
+  {
+    "id": "38",
+    "name": "红色幽灵",
+    "source": "经典游戏",
+    "feature": "大眼睛 · 波浪下摆",
+    "image": "roles/38.png",
+    "sha256": "21cd922a65657dc17d7d486dcca9e0e9d69ba8cd54aed246e1492043dc91fea9"
+  },
+  {
+    "id": "39",
+    "name": "Q伯特",
+    "source": "经典游戏",
+    "feature": "喇叭鼻子 · 两只脚",
+    "image": "roles/39.png",
+    "sha256": "9193f6bfb5840c07e94320900f4eefb18b5c18d4cf30c561f60be2ecc90d05a7"
+  },
+  {
+    "id": "40",
+    "name": "隼龙",
+    "source": "经典游戏",
+    "feature": "蓝色面罩 · 背后长刀",
+    "image": "roles/40.png",
+    "sha256": "2c0212b899e8df206e66ca8cc04f2ba5f4a5b0b256858f5bc2569f47e4c9cf4b"
+  }
+]

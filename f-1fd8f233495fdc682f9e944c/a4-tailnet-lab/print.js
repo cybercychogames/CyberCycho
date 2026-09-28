@@ -29,7 +29,7 @@
       blobUrl = URL.createObjectURL(file);
       $('open-print-pdf').href = blobUrl;
       $('open-print-pdf').hidden = false;
-      $('print-status').textContent = '补印 PDF 已下载到本页。可切换到打印机 Wi-Fi，请保持页面打开；需要稍后打印时先保存到“文件”。';
+      $('print-status').textContent = '补印 PDF 已下载到本页。保持 iPad 与打印机连接，即可核对后点“二次打印”；稍后打印可先保存到“文件”。';
     } catch (error) {
       if (selected?.id !== id || selectedOrigin !== origin) return;
       $('print-status').textContent = `补印文件尚未下载：${error.message}。连接 Mac 后重试。`;
