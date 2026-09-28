@@ -24,7 +24,7 @@
     state.job = job;
     state.busy = job.status === 'generating';
     $('job-id').textContent = `任务 ${job.id} · ${job.model || 'Codex 内置生图（订阅）'}`;
-    $('job-status').textContent = ({generating:'Codex 正在作画，可以暂时离开页面，回来后查询进度。', completed:`图片已完成，用时 ${job.seconds} 秒。`,failed:job.error, interrupted:job.error})[job.status] || '等待确认任务状态';
+    $('job-status').textContent = ({generating:job.phase === 'bailian' ? 'Codex 未完成，已自动切换百炼，正在作画…' : 'Codex 正在作画；失败后将自动切换百炼。', completed:`图片已完成，用时 ${job.seconds} 秒。${job.fallback_used ? 'Codex 未完成，本次由百炼生成。' : '本次由 Codex 生成。'}`,failed:job.fallback_used ? `Codex 与百炼均未完成。${job.error}` : job.error, interrupted:job.error})[job.status] || '等待确认任务状态';
     $('refresh-job').hidden = false;
     $('result-image').hidden = !job.image_url;
     $('download-image').hidden = !job.image_url;
@@ -33,7 +33,7 @@
       $('download-image').href = endpoint()+job.image_url;
     }
     $('send-btn').disabled = !state.ready || state.busy;
-    $('send-btn').textContent = state.busy ? '正在生成…' : '用 Codex 生成一张';
+    $('send-btn').textContent = state.busy ? '正在生成…' : '生成一张';
     clearTimeout(state.timer);
     if (state.busy) state.timer = setTimeout(refresh, 3000);
   }
@@ -50,7 +50,7 @@
       const data = await request('/api/status');
       if(data.mode !== 'tailnet-relay') throw new Error('目标不是生图接收器');
       state.ready = Boolean(data.codex?.configured);
-      status(state.ready ? 'online' : 'error', state.ready ? 'Mac mini 已连接 · Codex 订阅已登录' : 'Mac mini 已连接 · 请在 Mac 上登录 Codex（ChatGPT）');
+      status(state.ready ? 'online' : 'error', state.ready ? (data.codex.primary_ready ? `Mac mini 已连接 · Codex 优先 · 百炼${data.codex.fallback_ready ? '备用就绪' : '备用未登录'}` : 'Mac mini 已连接 · Codex 未登录 · 百炼可用') : 'Mac mini 已连接 · 请检查 Codex 和百炼登录状态');
       const saved = JSON.parse(localStorage.getItem(storageKey()) || 'null');
       if(saved) { state.job = saved; await refresh(); }
     } catch(e) {status('error',`连接未完成：${e.message}。请开启 Tailscale，或打开下方私网页。`);}
@@ -69,7 +69,7 @@
       $('job-status').textContent = `提交未确认：${e.message}。点击查询进度确认，避免重复生成。`;
       // Retain task ID: a timed-out POST may already have been accepted.
       try {showJob((await request(`/api/codex/jobs/${job.id}`)).job);} catch(_) {
-        if(e.httpStatus) { state.busy=false; localStorage.removeItem(storageKey()); $('send-btn').disabled=!state.ready; $('send-btn').textContent='用 Codex 生成一张'; }
+        if(e.httpStatus) { state.busy=false; localStorage.removeItem(storageKey()); $('send-btn').disabled=!state.ready; $('send-btn').textContent='生成一张'; }
       }
     }
   }
