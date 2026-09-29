@@ -65,6 +65,8 @@
       $('art-image').src = origin + job.image_url;
       $('art-image').alt = job.title || roleLabel(job);
       $('art-meta').textContent = `${time(job.created_at)} · ${job.provider_label} · ${job.seconds ?? '未记录'} 秒${job.preferred_provider ? ` · 首选 ${provider(job.preferred_provider)}` : ''}${job.fallback_used ? ' · 曾由备用服务接替' : ''}`;
+      $('art-student').hidden = !job.author && !job.class_name;
+      $('art-student').textContent = [job.class_name, job.author].filter(Boolean).join(' · ');
       $('art-reference-wrap').hidden = !job.reference_url;
       if (job.reference_url) $('art-reference').src = origin + job.reference_url;
       $('art-role').textContent = roleLabel(job);

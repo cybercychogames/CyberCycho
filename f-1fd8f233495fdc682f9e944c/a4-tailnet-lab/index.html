@@ -6,13 +6,13 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
   <meta name="description" content="选择 01–40 号角色参考图，写下变化要求，选择百炼或 Codex 创作并打印。">
-  <title>角色变身创作台</title>
-  <link rel="stylesheet" href="styles.css?v=gallery-1">
+  <title>Codex 订阅生图实验台 · 科技节</title>
+  <link rel="stylesheet" href="styles.css?v=student-copy-1">
 </head>
 <body>
   <main>
     <header>
-      <p class="eyebrow">科技节 · 探索实例 02</p>
+      <p class="eyebrow">科技节 · Codex 订阅生图实验台</p>
       <h1>选一个角色，画新的冒险</h1>
       <p class="lead">从 01–40 号底纸角色中选一个，AI 会看着这张参考图，根据你的想法改变动作、颜色或场景。</p>
       <div class="status checking" id="status"><i></i><span>点击连接 Mac mini 开始</span></div>
@@ -53,12 +53,22 @@
         <div><strong id="role-name"></strong><p id="role-feature"></p><p class="hint">这张原始角色图会随每一次请求交给所选生图服务。请与手中的底纸编号对应。</p></div>
       </div>
       <p class="hint" id="role-hint" role="status">先选择一个角色，才能生成。</p>
+      <fieldset class="student-registration">
+        <legend>先登记，再写下你的想法</legend>
+        <div class="student-fields">
+          <label for="student-name">姓名（必填）<input id="student-name" maxlength="20" autocomplete="off" required placeholder="例如：小明"></label>
+          <label for="student-class">班级（必填）<input id="student-class" maxlength="20" autocomplete="off" required placeholder="例如：二（1）班"></label>
+        </div>
+        <p class="hint">姓名和班级用于保存、查找作品，请核对后填写。</p>
+      </fieldset>
       <label class="changes-label" for="message">这个角色要发生什么变化？</label>
       <textarea id="message" maxlength="4000" placeholder="例如：穿上蓝色披风，在月球上种一棵树。保留原来的脸和尾巴。"></textarea>
-      <details class="paper-copy"><summary>印在纸上的文字（选填）</summary>
-        <label>作品名字<input id="work-title" maxlength="24" placeholder="默认：我的冒险"></label>
-        <label>作品的一句话<input id="work-caption" maxlength="64" placeholder="只用于排版，不作为额外生图描述"></label>
-      </details>
+      <div class="paper-copy">
+        <div class="copy-heading"><strong>印在作品上的文字</strong><button type="button" class="secondary" id="suggest-copy" disabled>重新提炼</button></div>
+        <p class="hint" id="copy-status" role="status" aria-live="polite">写好变化要求，离开输入框后自动提炼；也可以自己填写。</p>
+        <label for="work-title">作品名字<input id="work-title" maxlength="24" placeholder="例如：月球上的第一棵树"></label>
+        <label for="work-caption">作品的一句话<input id="work-caption" maxlength="64" placeholder="例如：小火龙披上蓝披风，在月球上种下希望。"></label>
+      </div>
       <label class="changes-label" for="preferred-provider">从哪一家开始？</label>
       <select id="preferred-provider">
         <option value="bailian" selected>百炼优先（默认）→ Codex 接替</option>
@@ -74,6 +84,7 @@
       <p id="job-status" role="status" aria-live="polite">等待提交任务</p>
       <p class="hint" id="job-id"></p>
       <p class="job-role" id="job-role" hidden></p>
+      <p class="hint" id="job-student" hidden></p>
       <img id="result-image" alt="基于角色参考图生成的结果" hidden>
       <a id="download-image" class="private-link" target="_blank" rel="noopener" hidden>打开原图 / 保存到 iPad</a>
       <button id="refresh-job" class="secondary" hidden>查询任务进度</button>
@@ -120,6 +131,7 @@
       <div class="section-head"><h2 id="art-title">作品详情</h2><form method="dialog"><button class="secondary" aria-label="关闭作品详情">关闭</button></form></div>
       <img id="art-image" class="art-full" alt="已保存的作品">
       <p id="art-meta" class="hint"></p>
+      <p id="art-student" class="hint" hidden></p>
       <div id="art-reference-wrap" class="art-reference" hidden><img id="art-reference" alt="当次生成使用的角色参考图"><p id="art-role"></p></div>
       <h3>当时的变化要求</h3><p id="art-prompt" class="saved-text"></p>
       <p id="art-caption" class="hint"></p>
@@ -135,7 +147,8 @@
     </aside>
   </main>
   <script src="print.js?v=roles-3"></script>
-  <script src="gallery.js?v=gallery-1"></script>
-  <script src="app.js?v=gallery-1"></script>
+  <script src="copy.js?v=student-copy-1"></script>
+  <script src="gallery.js?v=student-copy-1"></script>
+  <script src="app.js?v=student-copy-1"></script>
 </body>
 </html>
