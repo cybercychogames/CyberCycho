@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "fox-garden-dance-20260930-054c0978",
+    "title": "花园里跳舞的小狐狸",
+    "caption": "",
+    "created_at": "2026-09-30T11:06:51.086934+08:00",
+    "role_id": null,
+    "role_name": "原创小狐狸",
+    "provider": "codex",
+    "status": "completed",
+    "image": "images/fox-garden-dance-20260930.png",
+    "thumbnail": "thumbs/fox-garden-dance-20260930.jpg",
+    "prompt": "一只原创小狐狸在花园里开心跳舞，沿用科技节的粗颗粒像素画风。",
+    "generation_prompt": "Create a square illustration for a children's science festival: a charming original little fox dancing joyfully in a flower garden, rendered as bold coarse pixel art. Design a distinct original fox with short triangular ears, a russet-brown coat, a small white muzzle, a teal fabric neckerchief, and a bushy tail with a dark brown tip. Show one fox, full body, centered, one paw lifted and one foot raised in a playful dancing step, with a happy face. Surround it with simple pixel flowers and green grass in a bright welcoming garden. Match a handmade retro pixel-art aesthetic: large clearly visible square blocks, consistent coarse pixel grid, hard edges, dark outlines, limited flat colors, restrained background detail. Keep the silhouette readable and the fox the main focus, with comfortable space around it. No other characters, no text, no watermark, no border, no realistic fur, no 3D, no gradients or blur.",
+    "attempts": [
+      {
+        "provider": "codex",
+        "status": "completed"
+      }
+    ]
+  }
+]
