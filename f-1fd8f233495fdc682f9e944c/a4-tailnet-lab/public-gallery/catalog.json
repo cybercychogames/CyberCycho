@@ -1,0 +1,46 @@
+[
+  {
+    "id": "5e791c5f29eeb65af230346b86666c6f",
+    "title": "月球上的小园丁",
+    "caption": "披着蓝色披风的小机器人在月球种树。",
+    "created_at": "2026-09-30T09:22:17.471517+08:00",
+    "role_id": null,
+    "role_name": "原创机器人",
+    "provider": "Codex",
+    "image": "images/moon-gardener.png",
+    "thumbnail": "thumbs/moon-gardener.jpg"
+  },
+  {
+    "id": "5b4adf14f9435bf188374bff0a5adf11",
+    "title": "花园里的舞会",
+    "caption": "花盆机器人与蝴蝶在花园里跳舞。",
+    "created_at": "2026-09-30T09:22:54.977335+08:00",
+    "role_id": null,
+    "role_name": "原创机器人",
+    "provider": "Codex",
+    "image": "images/garden-dancer.png",
+    "thumbnail": "thumbs/garden-dancer.jpg"
+  },
+  {
+    "id": "dd0abd7aa5c74049c6f868913f02440e",
+    "title": "洛克人基础版",
+    "caption": "09号角色，白底完整像素造型。",
+    "created_at": "2026-09-30T09:53:07.433462+08:00",
+    "role_id": "09",
+    "role_name": "洛克人",
+    "provider": "Codex",
+    "image": "images/09-megaman-basic.png",
+    "thumbnail": "thumbs/09-megaman-basic.jpg"
+  },
+  {
+    "id": "f76c3bac65aa3cf3c498ce5cf5cc2068",
+    "title": "吃豆人基础版",
+    "caption": "10号角色，白底完整像素造型。",
+    "created_at": "2026-09-30T09:54:13.134612+08:00",
+    "role_id": "10",
+    "role_name": "吃豆人",
+    "provider": "Codex",
+    "image": "images/10-pacman-basic.png",
+    "thumbnail": "thumbs/10-pacman-basic.jpg"
+  }
+]
