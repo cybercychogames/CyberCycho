@@ -18,15 +18,14 @@
     try { localStorage.setItem(storageKey(), JSON.stringify(job)); } catch (_) {}
   }
   function updateControls() {
-    $('send-btn').disabled = !state.ready || state.busy || state.copyBusy || !role() || !$('message').value.trim()
-      || !$('student-name').value.trim() || !$('student-class').value.trim();
+    $('send-btn').disabled = !state.ready || state.busy || state.copyBusy || !role() || !$('message').value.trim();
     $('send-btn').textContent = state.busy ? '正在生成…' : '用所选角色生成一张';
     $('role-id').disabled = state.busy || !state.roles.length;
     $('backend').disabled = state.busy || state.connecting;
     $('preferred-provider').disabled = state.busy;
     $('connect-btn').disabled = state.busy || state.connecting;
     $('suggest-copy').disabled = !state.ready || state.busy || state.copyBusy || !role() || !$('message').value.trim();
-    for (const id of ['student-name','student-class','message','work-title','work-caption']) $(id).disabled = state.busy;
+    for (const id of ['message','work-title','work-caption']) $(id).disabled = state.busy;
     document.querySelectorAll('.role-choice').forEach(button => {button.disabled = state.busy;});
   }
   function status(kind, text) {
@@ -62,7 +61,7 @@
         button.setAttribute('aria-label', `选择 ${item.id} 号 ${item.name}`);
         const image = document.createElement('img'); image.src = item.image; image.alt = ''; image.loading = 'lazy';
         const label = document.createElement('span'); label.textContent = `${item.id} ${item.name}`;
-        button.append(image, label); button.addEventListener('click', () => {selectRole(item.id); copy.changed(); copy.suggest();});
+        button.append(image, label); button.addEventListener('click', () => {selectRole(item.id); copy.changed();});
         $('role-grid').append(button);
       }
       updateControls();
@@ -86,8 +85,9 @@
     $('job-id').textContent = `任务 ${job.id} · 首选 ${providerName(job.preferred_provider)} · 当前 ${job.provider_label || providerName(job.provider)}${job.fallback_used ? '（已接替）' : ''}`;
     $('job-role').hidden = !job.role_id;
     $('job-role').textContent = job.role_id ? `本次作品使用 ${job.role_id} 号 · ${job.role_name || ''} 的参考图，请核对同编号的底纸。` : '';
-    $('job-student').hidden = !job.author && !job.class_name;
-    $('job-student').textContent = [job.class_name, job.author].filter(Boolean).join(' · ');
+    const registration = [job.class_name, job.author].filter(value => value && value !== '未填写');
+    $('job-student').hidden = !registration.length;
+    $('job-student').textContent = registration.join(' · ');
     $('job-status').textContent = ({generating:`${job.fallback_used ? (job.fallback_reason || '首选服务未完成') + '，已切换到' : ''}${providerName(job.phase || job.provider)}正在根据角色参考图作画…`, completed:`图片由${providerName(job.provider)}完成，用时 ${job.seconds} 秒。${job.fallback_used ? '首选服务未完成，备用服务已接替。' : ''}请核对角色和变化。`,failed:job.error || '本次生成失败，请确认后手动重试。', interrupted:job.error})[job.status] || '等待确认任务状态';
     $('refresh-job').hidden = false;
     $('result-image').hidden = !job.image_url;
@@ -138,7 +138,6 @@
         $('preferred-provider').value = saved.preferred_provider || 'bailian';
         if (saved.prompt) $('message').value = saved.prompt;
         $('work-title').value = saved.title || ''; $('work-caption').value = saved.caption || '';
-        $('student-name').value = saved.author || ''; $('student-class').value = saved.class_name || '';
         copy.restore(saved.copy_manual);
         state.busy = saved.status === 'generating';
         $('refresh-job').hidden = false;
@@ -149,16 +148,10 @@
   }
   async function send() {
     const prompt = $('message').value.trim(), selected = role();
-    const author = $('student-name').value.trim(), class_name = $('student-class').value.trim();
-    if (!state.ready || !prompt || !selected || state.busy || state.copyBusy || !author || !class_name) return;
-    await copy.suggest();
-    // The student may have changed the idea while the model was responding.
-    if (prompt !== $('message').value.trim() || selected.id !== $('role-id').value) return;
-    if (!$('work-title').value.trim() || !$('work-caption').value.trim()) {
-      $('copy-status').textContent = '请先填写作品名字和一句话，再开始生图。'; return;
-    }
+    if (!state.ready || !prompt || !selected || state.busy || state.copyBusy) return;
     const preferred = $('preferred-provider').value;
-    const job = {id:crypto.randomUUID().replaceAll('-',''),status:'generating',model:`${providerName(preferred)}参考图生图`,provider:preferred,preferred_provider:preferred,role_id:selected.id,role_name:selected.name,prompt,author:$('student-name').value.trim(),class_name:$('student-class').value.trim(),title:$('work-title').value.trim(),caption:$('work-caption').value.trim(),copy_manual:copy.snapshot()};
+    // Legacy backend requires nonempty registration; explicitly record that none was collected.
+    const job = {id:crypto.randomUUID().replaceAll('-',''),status:'generating',model:`${providerName(preferred)}参考图生图`,provider:preferred,preferred_provider:preferred,role_id:selected.id,role_name:selected.name,prompt,author:'未填写',class_name:'未填写',title:$('work-title').value.trim(),caption:$('work-caption').value.trim(),copy_manual:copy.snapshot()};
     showJob(job);
     try {
       const data = await request('/api/image/jobs',{method:'POST',body:JSON.stringify({request_id:job.id,role_id:job.role_id,preferred_provider:preferred,prompt,title:job.title,caption:job.caption,author:job.author,class_name:job.class_name,copy_manual:job.copy_manual})});
@@ -182,19 +175,16 @@
     $('preferred-provider').value = job.preferred_provider || 'bailian';
     $('message').value = job.prompt || '';
     $('work-title').value = job.title || ''; $('work-caption').value = job.caption || '';
-    $('student-name').value = job.author || ''; $('student-class').value = job.class_name || '';
     copy.restore(job.copy_manual);
     showJob({...job, archived:true});
     $('art-dialog').close();
     $('result-panel').scrollIntoView({behavior:'smooth',block:'start'});
   });
   $('role-id').addEventListener('change', () => selectRole($('role-id').value));
-  $('role-id').addEventListener('change', () => {copy.changed(); copy.suggest();});
+  $('role-id').addEventListener('change', () => copy.changed());
   $('message').addEventListener('input', () => {copy.changed(); updateControls();});
-  $('message').addEventListener('blur', () => {if (!state.busy) copy.suggest();});
   $('suggest-copy').addEventListener('click', () => copy.suggest(true));
   for (const field of ['title','caption']) $('work-'+field).addEventListener('input', () => copy.edit(field));
-  for (const id of ['student-name','student-class']) $(id).addEventListener('input', updateControls);
   $('backend').addEventListener('change',()=>{state.ready=false;state.job=null;window.dispatchEvent(new CustomEvent('a4-connection',{detail:{connected:false,origin:endpoint()}}));window.dispatchEvent(new CustomEvent('a4-job',{detail:{job:null,origin:endpoint()}}));clearTimeout(state.timer);status('checking','地址已变化，请连接 Mac mini');});
   $('connect-btn').addEventListener('click',connect);
   $('send-btn').addEventListener('click',send);

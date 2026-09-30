@@ -53,22 +53,15 @@
         <div><strong id="role-name"></strong><p id="role-feature"></p><p class="hint">这张原始角色图会随每一次请求交给所选生图服务。请与手中的底纸编号对应。</p></div>
       </div>
       <p class="hint" id="role-hint" role="status">先选择一个角色，才能生成。</p>
-      <fieldset class="student-registration">
-        <legend>先登记，再写下你的想法</legend>
-        <div class="student-fields">
-          <label for="student-name">姓名（必填）<input id="student-name" maxlength="20" autocomplete="off" required placeholder="例如：小明"></label>
-          <label for="student-class">班级（必填）<input id="student-class" maxlength="20" autocomplete="off" required placeholder="例如：二（1）班"></label>
-        </div>
-        <p class="hint">姓名和班级用于保存、查找作品，请核对后填写。</p>
-      </fieldset>
       <label class="changes-label" for="message">这个角色要发生什么变化？</label>
       <textarea id="message" maxlength="4000" placeholder="例如：穿上蓝色披风，在月球上种一棵树。保留原来的脸和尾巴。"></textarea>
-      <div class="paper-copy">
-        <div class="copy-heading"><strong>印在作品上的文字</strong><button type="button" class="secondary" id="suggest-copy" disabled>重新提炼</button></div>
-        <p class="hint" id="copy-status" role="status" aria-live="polite">写好变化要求，离开输入框后自动提炼；也可以自己填写。</p>
+      <details class="paper-copy">
+        <summary>作品文字（选填）</summary>
+        <div class="copy-heading"><strong>印在作品上的文字</strong><button type="button" class="secondary" id="suggest-copy" disabled>帮我提炼</button></div>
+        <p class="hint" id="copy-status" role="status" aria-live="polite">可以留空直接生图；需要时再填写或点击“帮我提炼”。</p>
         <label for="work-title">作品名字<input id="work-title" maxlength="24" placeholder="例如：月球上的第一棵树"></label>
         <label for="work-caption">作品的一句话<input id="work-caption" maxlength="64" placeholder="例如：小火龙披上蓝披风，在月球上种下希望。"></label>
-      </div>
+      </details>
       <label class="changes-label" for="preferred-provider">从哪一家开始？</label>
       <select id="preferred-provider">
         <option value="bailian" selected>百炼优先（默认）→ Codex 接替</option>
@@ -149,6 +142,6 @@
   <script src="print.js?v=roles-3"></script>
   <script src="copy.js?v=student-copy-1"></script>
   <script src="gallery.js?v=student-copy-1"></script>
-  <script src="app.js?v=student-copy-1"></script>
+  <script src="app.js?v=image-first-1"></script>
 </body>
 </html>
