@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="720" viewBox="0 0 680 720" role="img" aria-label="绿芽勇者与暗影小怪">
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#65c1c3"/><stop offset="1" stop-color="#388d9b"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ddffc0" stop-opacity=".85"/><stop offset="1" stop-color="#c0efbd" stop-opacity="0"/></radialGradient>
+ <pattern id="tiles" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M0 0H48V48" fill="none" stroke="#217382" stroke-opacity=".17" stroke-width="2"/></pattern>
+ <g id="star"><path d="m0-15 5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2Z" fill="#ffe88b" stroke="#d1b465" stroke-width="2" stroke-linejoin="round"/></g>
+ <g id="cube" stroke="#bb863c" stroke-width="3" stroke-linejoin="round"><path d="m0-30 31 16-31 17-31-17Z" fill="#ffdb75"/><path d="m-31-14 31 17v34l-31-17Z" fill="#efb44e"/><path d="M0 3 31-14v34L0 37Z" fill="#d9953b"/></g>
+ <g id="shadow" stroke="#19394e" stroke-linejoin="round"><ellipse cy="14" rx="45" ry="12" fill="#286b78" stroke="none" opacity=".35"/><path d="m-37-14-3-32 5-34 20 15 32-1 20-16 7 48-4 25-14 18-13-7L1 11-12 4-27 9Z" fill="#244455" stroke-width="6"/><path d="M37-11Q71 1 73-26" fill="none" stroke="#244455" stroke-width="10" stroke-linecap="round"/><path d="m-22-40 17 5-6 8-9-2Zm33 5 18-6-3 13-12 1Z" fill="#bceadd" stroke="none"/></g>
+ <filter id="shadowFilter"><feDropShadow dx="0" dy="7" stdDeviation="1" flood-color="#255d61" flood-opacity=".25"/></filter>
+</defs>
+<rect x="7" y="7" width="666" height="706" rx="42" fill="#eef6dc"/>
+<rect x="25" y="25" width="630" height="670" rx="29" fill="#244455"/>
+<rect x="55" y="62" width="570" height="594" rx="8" fill="url(#bg)"/>
+<path d="M65 579 158 577 266 481 259 356 394 314 431 115 606 102v135l-89 38-18 161-144 22-45 114-168 65H65Z" fill="#87c981" opacity=".86"/>
+<path d="M68 177 202 140 255 201 222 265 97 298Z" fill="#439bad"/>
+<rect x="55" y="62" width="570" height="594" fill="url(#tiles)"/>
+<g fill="#32717a" stroke="#1e3f54" stroke-width="4"><rect x="107" y="30" width="107" height="29" rx="5"/><rect x="351" y="30" width="80" height="29" rx="5"/><rect x="485" y="30" width="103" height="29" rx="5"/><rect x="29" y="204" width="25" height="66" rx="5"/><rect x="29" y="345" width="25" height="82" rx="5"/><rect x="29" y="524" width="25" height="85" rx="5"/><rect x="625" y="134" width="25" height="81" rx="5"/><rect x="625" y="373" width="25" height="66" rx="5"/><rect x="625" y="553" width="25" height="68" rx="5"/><rect x="128" y="659" width="97" height="30" rx="5"/><rect x="370" y="659" width="125" height="30" rx="5"/></g>
+<g fill="#8f7cc5" stroke="#534977" stroke-width="5"><rect x="29" y="30" width="32" height="32" rx="9"/><rect x="617" y="30" width="32" height="32" rx="9"/><rect x="29" y="657" width="32" height="32" rx="9"/><rect x="617" y="657" width="32" height="32" rx="9"/></g>
+<circle cx="335" cy="370" r="201" fill="url(#glow)"/>
+<g stroke="#d7f9ca" stroke-width="7" stroke-linecap="round" opacity=".85"><path d="m306 170 7 35m139 33-24 25m68 88-36 6m-22 129-24-26m-97 78 1-39m-131-58 33-22m-32-129 31 15"/></g>
+<use href="#cube" transform="translate(167 240) rotate(-8)"/>
+<use href="#cube" transform="translate(179 568) scale(.72)"/>
+<use href="#cube" transform="translate(461 593) scale(.6)" style="filter:hue-rotate(155deg)"/>
+<use href="#shadow" transform="translate(522 218) rotate(8)"/>
+<use href="#shadow" transform="translate(531 583) rotate(-6) scale(.94)"/>
+<g transform="translate(336 443)" stroke="#214354" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" filter="url(#shadowFilter)">
+ <ellipse cx="0" cy="39" rx="83" ry="22" fill="#347c7b" stroke="none" opacity=".25"/>
+ <path d="M-4-100 69-112Q122-163 165-124L123-100Q128-37 56-45L5-55Z" fill="#ba6275"/>
+ <path d="M61-104Q117-153 152-130" fill="none" stroke="#f2b16d" stroke-width="9"/>
+ <path d="m-42-30 33 2-13 62-43 7 3-23Z" fill="#705842"/>
+ <path d="m8-26 35-3 26 47-33 22L15 18Z" fill="#705842"/>
+ <path d="M-41-105 34-104 43-33Q4-10-46-28Z" fill="#419c8b"/>
+ <path d="M-27-99-28-47M24-95 28-49" fill="none" stroke="#7dd1a9" stroke-width="9"/>
+ <path d="m-43-36 83-1" stroke="#73563e" stroke-width="12"/>
+ <rect x="-5" y="-44" width="17" height="17" rx="3" fill="#f0c75b" stroke-width="3"/>
+ <ellipse cx="-4" cy="-143" rx="60" ry="48" fill="#ffe2aa"/>
+ <path d="m-64-144-5-28 19-30 29-9 9-12 17 7 24-4 30 24 3 27 18 15-33 8-22-18-18 18-19-14-19 20-17-15-11 19Z" fill="#65b969"/>
+ <path d="m-45-181 18-15 24-2" fill="none" stroke="#a3dc84" stroke-width="8"/>
+ <ellipse cx="-23" cy="-141" rx="4" ry="7" fill="#214354" stroke="none"/>
+ <ellipse cx="17" cy="-142" rx="4" ry="7" fill="#214354" stroke="none"/>
+ <ellipse cx="-42" cy="-125" rx="8" ry="4" fill="#f0b48d" stroke="none"/>
+ <ellipse cx="36" cy="-125" rx="8" ry="4" fill="#f0b48d" stroke="none"/>
+ <path d="M-12-122q10 12 20-1" fill="none" stroke-width="3"/>
+ <path d="M-46-102q41 26 80-2" fill="none" stroke="#c66d6d" stroke-width="14"/>
+ <circle cx="19" cy="-97" r="6" fill="#efd47e" stroke-width="2"/>
+ <g transform="translate(-63 -68) rotate(-35)"><path d="m-7-4-5-79L0-106 13-84 7-4Z" fill="#bbdeef"/><path d="M0-17v-68" stroke="#effaff" stroke-width="4"/><path d="M-22 0h44" stroke="#d3a850" stroke-width="12"/><path d="M0 4v22" stroke="#866842" stroke-width="11"/></g>
+ <circle cx="-58" cy="-56" r="13" fill="#ffe2aa"/>
+ <g transform="translate(59 -51) rotate(10)"><path d="m0-51 44 17-5 53Q28 43 0 58-30 42-40 18l-5-53Z" fill="#d0e9d7"/><path d="m0-36 30 13-3 38Q17 35 0 43-20 32-27 15l-4-38Z" fill="#3982b7" stroke="#73b1cc" stroke-width="4"/><use href="#star" transform="translate(0 0) scale(1.35)" stroke-width="1"/></g>
+</g>
+<use href="#star" transform="translate(117 368) scale(.8)"/><use href="#star" transform="translate(546 365) scale(.8)"/><use href="#star" transform="translate(348 139) scale(.85)"/>
+<g fill="#e1ffde"><circle cx="209" cy="349" r="4"/><circle cx="425" cy="271" r="4"/><circle cx="422" cy="537" r="4"/><circle cx="269" cy="564" r="3"/><circle cx="134" cy="478" r="3"/><circle cx="568" cy="292" r="3"/></g>
+</svg>
